@@ -28,25 +28,27 @@ Estándar abierto (presentado por Anthropic en noviembre de 2024) para conectar 
 La especificación **2026-07-28** (publicada el 28 de julio de 2026) introduce un núcleo **sin estado** (se eliminan las sesiones de protocolo y `Mcp-Session-Id`), encabezados `Mcp-Method`/`Mcp-Name` para enrutar, resultados de listas cacheables (`ttlMs`), endurecimiento de autorización y un marco formal de extensiones. Revisa la compatibilidad de cada servidor con la versión que use tu cliente.
 
 ## SDK
-Python (`mcp`, incluye FastMCP), TypeScript, **C#** (`ModelContextProtocol`, ideal para add-ins .NET de Revit/Navisworks/Tekla), Java, Kotlin, Go, Rust, entre otros.
+Python (`mcp`: en la **versión 2.x** la clase se llama `MCPServer`; la 1.x usaba `FastMCP`, que muchos servidores comunitarios aún fijan con `mcp<2` o el paquete `fastmcp`), TypeScript, **C#** (`ModelContextProtocol`, ideal para add-ins .NET de Revit/Navisworks/Tekla), Java, Kotlin, Go, Rust, entre otros.
 
-## Servidor mínimo en Python
+## Servidor mínimo en Python (SDK 2.x)
 ```python
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
-mcp = FastMCP("jarvis-normas")
+mcp = MCPServer("jarvis-normas")
 
 DERIVAS_E030 = {"concreto armado": 0.007, "acero": 0.010, "albanileria": 0.005,
                 "madera": 0.010, "muros de ductilidad limitada": 0.005}
 
 @mcp.tool()
 def deriva_maxima(material: str) -> float:
-    """Deriva máxima de entrepiso según E.030 (versión 2018; verificar la vigente)."""
+    """Deriva máxima de entrepiso (valores 2019; confirmar Tabla 14 de la E.030-2026)."""
     return DERIVAS_E030[material.lower()]
 
 if __name__ == "__main__":
-    mcp.run()  # transporte stdio
+    mcp.run("stdio")
 ```
+
+Implementación completa con 23 herramientas: [[MCP JARVIS BIM - Servidor propio]].
 
 Siguiente: [[Patrones de puente MCP para software de escritorio]] · [[Configuracion de clientes MCP]]
 

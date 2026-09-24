@@ -22,7 +22,7 @@ Windows 10/11 64 bits (todo el software AEC y COM lo exige), 32 GB RAM recomenda
 ## Librerías
 | Python | C# |
 |---|---|
-| `mcp` (FastMCP), `comtypes`, `pywin32`, `pythonnet`, `ifcopenshell`, `openpyxl`, `pandas`, `xlwings`, `ezdxf` | `ModelContextProtocol` (SDK oficial), Revit API, Navisworks API, Tekla Open API (NuGet por versión), AutoCAD/Civil 3D .NET |
+| `mcp` 2.x (`MCPServer`; 1.x = FastMCP), `comtypes`, `pywin32`, `pythonnet`, `ifcopenshell`, `openpyxl`, `pandas`, `xlwings`, `ezdxf` | `ModelContextProtocol` (SDK oficial), Revit API, Navisworks API, Tekla Open API (NuGet por versión), AutoCAD/Civil 3D .NET |
 
 ## Matriz de versiones (llenar con lo instalado)
 | Programa | Versión instalada | API/MCP elegido | Probado |

@@ -1,5 +1,12 @@
 {
   "mcpServers": {
+    "jarvis-bim": {
+      "command": "C:\\Users\\JHORDAN\\Documents\\1.APP CREADOS\\APP PARA BIM\\ing.jhoel\\jarvis-mcp\\.venv\\Scripts\\jarvis-bim-mcp.exe",
+      "args": [],
+      "env": {
+        "JARVIS_BOVEDA": "C:\\Users\\JHORDAN\\Documents\\1.APP CREADOS\\APP PARA BIM\\ing.jhoel\\JARVIS-BIM"
+      }
+    },
     "boveda-jarvis": {
       "command": "npx",
       "args": [

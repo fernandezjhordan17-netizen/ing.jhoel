@@ -77,4 +77,4 @@ Write-Host ""
 Write-Host "Listo. Proximos pasos:" -ForegroundColor Green
 Write-Host " 1. Abre Obsidian > 'Abrir carpeta como boveda' > $Boveda"
 Write-Host " 2. Lee la nota 'JARVIS BIM - Inicio' y 'Como usar esta boveda'"
-Write-Host " 3. Conecta Claude Desktop con jarvis\claude_desktop_config.ejemplo.json"
+Write-Host " 3. Conecta JARVIS a Claude Desktop: scripts\07_instalar_jarvis_mcp.ps1 (servidor propio jarvis-bim)"

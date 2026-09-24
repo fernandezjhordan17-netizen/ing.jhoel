@@ -14,6 +14,9 @@ actualizado: 2026-09-24
 | `PriyankGodhat/etabs-mcp-server-local-embeddings` | Documentación ETABS | Búsqueda semántica local en manuales (ChromaDB) |
 | SAFE | — | No se encontró un servidor MCP público maduro → **construir** con el mismo patrón (OAPI) |
 
+## Ya implementado en el servidor propio
+`csi_estado`, `csi_leer_tabla`, `csi_derivas`, `csi_reacciones_base`, `csi_crear_espectro_e030`, `csi_correr_analisis` + motor `e030_*` → [[MCP JARVIS BIM - Servidor propio]].
+
 ## Herramientas JARVIS a construir/adaptar (E.030/E.060)
 | Herramienta | Qué hace |
 |---|---|

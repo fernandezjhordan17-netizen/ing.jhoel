@@ -1,5 +1,12 @@
 {
   "mcpServers": {
+    "jarvis-bim": {
+      "command": "jarvis-mcp/.venv/Scripts/jarvis-bim-mcp.exe",
+      "args": [],
+      "env": {
+        "JARVIS_BOVEDA": "JARVIS-BIM"
+      }
+    },
     "excel": {
       "command": "uvx",
       "args": [

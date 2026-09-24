@@ -33,3 +33,7 @@ node_modules/
 # Configuración local con rutas/credenciales
 .mcp.json
 .env
+
+# Paquete jarvis-mcp
+*.egg-info/
+.pytest_cache/

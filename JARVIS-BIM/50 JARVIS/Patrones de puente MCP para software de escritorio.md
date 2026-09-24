@@ -35,7 +35,7 @@ El software AEC es **de escritorio, Windows, y muchas veces de un solo hilo**. H
 ```python
 import queue, threading
 import comtypes, comtypes.client
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer  # SDK 2.x (en 1.x: FastMCP)
 
 cola = queue.Queue()
 
@@ -58,7 +58,7 @@ def en_etabs(funcion):
     if estado == "error": raise RuntimeError(valor)
     return valor
 
-mcp = FastMCP("etabs-jarvis")
+mcp = MCPServer("etabs-jarvis")
 
 @mcp.tool()
 def nombre_modelo() -> str:
@@ -68,5 +68,7 @@ def nombre_modelo() -> str:
 if __name__ == "__main__":
     mcp.run()
 ```
+
+Implementación real y probada de este patrón: `jarvis-mcp/src/jarvis_bim/etabs.py` → [[MCP JARVIS BIM - Servidor propio]].
 
 ↑ [[MOC JARVIS y MCP]] · [[JARVIS - Arquitectura]] · [[JARVIS - Seguridad y gobernanza]]

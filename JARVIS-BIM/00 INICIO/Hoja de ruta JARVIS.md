@@ -16,6 +16,11 @@ actualizado: 2026-09-24
 - [x] Scripts de descarga de modelos BIM → [[Descarga de proyectos BIM]]
 - [x] Generador IFC → notas de proyecto → [[MOC Proyectos de Estudio]]
 
+## Fase 0.5 — Primer servidor propio (✅)
+- [x] `jarvis-bim` con 23 herramientas y 52 pruebas → [[MCP JARVIS BIM - Servidor propio]]
+- [x] Motor E.030-2026, búsqueda en bóveda, IFC, ISO 19650, puente ETABS (experimental)
+- [ ] Instalar en Windows con `scripts/07_instalar_jarvis_mcp.ps1` y probar con un modelo ETABS de copia
+
 ## Fase 1 — Memoria conectada (semana 1–2)
 - [ ] Instalar plugin Local REST API con MCP y conectar Obsidian a Claude → [[MCP Obsidian - Memoria de JARVIS]]
 - [ ] Descargar normas oficiales y convertirlas en notas (`05_descargar_normas_oficiales.ps1`) → [[Indice de textos oficiales]]

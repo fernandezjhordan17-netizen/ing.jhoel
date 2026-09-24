@@ -37,6 +37,7 @@ Comandos tomados de los README de cada servidor (versión completa en `jarvis/cl
 | Robot (`robot-structural-mcp`) | `<MCP>\Robot\robot-structural-mcp\.venv\Scripts\python.exe` | `["-m", "robot_mcp"]`, env `ROBOT_MCP_MAX_ITEMS=200` |
 | AutoCAD (`autocad-mcp`) | `<MCP>\AutoCAD\autocad-mcp\.venv\Scripts\python.exe` | `["-m", "autocad_mcp"]`, env `AUTOCAD_MCP_BACKEND=auto` |
 | Excel (`excel-mcp-server`) | `uvx` | `["excel-mcp-server", "stdio"]` |
+| **JARVIS BIM (propio)** | `...\ing.jhoel\jarvis-mcp\.venv\Scripts\jarvis-bim-mcp.exe` | env `JARVIS_BOVEDA=...\JARVIS-BIM` — lo configura `scripts/07_instalar_jarvis_mcp.ps1` → [[MCP JARVIS BIM - Servidor propio]] |
 | Revit 2027 oficial | — | Se configura solo al instalar el complemento |
 
 > [!warning] Antes de activar un servidor: instálalo en su propio entorno virtual (`py -3 -m venv .venv` + `pip install -e .`), lee su README (cambia entre versiones) y pruébalo con una **copia** del modelo. Activa los servidores **de uno en uno**.

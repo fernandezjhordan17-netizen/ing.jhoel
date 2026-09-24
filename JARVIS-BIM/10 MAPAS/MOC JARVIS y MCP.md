@@ -17,6 +17,7 @@ actualizado: 2026-09-24
 - BIM/CAD: [[MCP Revit]] · [[MCP Dynamo]] · [[MCP AutoCAD y Civil 3D]] · [[MCP Navisworks]] · [[MCP Tekla Structures]]
 - Estructural: [[MCP CSI - ETABS SAP2000 SAFE]] · [[MCP Robot Structural Analysis]]
 - Datos: [[MCP Excel]] · [[MCP Obsidian - Memoria de JARVIS]]
+- ⭐ Propio: [[MCP JARVIS BIM - Servidor propio]] (E.030-2026, bóveda, IFC, ISO 19650, ETABS)
 - Gestión: [[MCP Gestion de Proyectos]]
 
 ## Inteligencia

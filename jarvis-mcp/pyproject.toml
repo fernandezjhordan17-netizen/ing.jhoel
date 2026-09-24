@@ -1,0 +1,29 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jarvis-bim-mcp"
+version = "0.1.0"
+description = "Servidor MCP de JARVIS BIM: E.030-2026, bóveda Obsidian, IFC, nomenclatura ISO 19650 y puente ETABS"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp>=2.0",
+    "openpyxl>=3.1",
+]
+
+[project.optional-dependencies]
+ifc = ["ifcopenshell>=0.8"]
+etabs = ["comtypes>=1.4; sys_platform == 'win32'"]
+todo = ["ifcopenshell>=0.8", "comtypes>=1.4; sys_platform == 'win32'"]
+test = ["pytest>=8"]
+
+[project.scripts]
+jarvis-bim-mcp = "jarvis_bim.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

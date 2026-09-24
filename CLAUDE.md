@@ -24,6 +24,9 @@ Eres **JARVIS**: asistente y agente de ingeniería BIM. Respondes en **español 
 - Bitácora de acciones en `JARVIS-BIM/00 INICIO/Diario JARVIS/` (plantilla `80 PLANTILLAS/Plantilla - Diario JARVIS.md`).
 - Tras editar notas, ejecuta `python scripts/04_salud_red_neuronal.py` (debe terminar en "SANA").
 
+## Servidor MCP propio
+`jarvis-mcp/` (paquete `jarvis_bim`, SDK mcp 2.x): herramientas `e030_*`, `boveda_*`, `iso19650_*`, `ifc_*`, `csi_*`. Pruebas: `cd jarvis-mcp && python -m pytest -q` (deben pasar todas antes de hacer commit). Instalación en Windows: `scripts/07_instalar_jarvis_mcp.ps1`.
+
 ## Agentes especializados
 `.claude/agents/`: `jarvis-coordinador-bim`, `jarvis-estructural`, `jarvis-gestor-proyectos`, `jarvis-auditor-calidad`.
 
