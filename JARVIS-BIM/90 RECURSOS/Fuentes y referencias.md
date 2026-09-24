@@ -31,6 +31,7 @@ ISO (iso.org) · Planbim Chile · es.BIM (España) · NBS · BIMe Initiative · 
 ## Repositorios GitHub útiles
 buildingSMART (Sample-Test-Files, IFC4.3.x-sample-models, IDS, BCF-XML) · IfcOpenShell · DynamoDS (Dynamo, DynamoPrimerNew) · servidores MCP listados en [[MOC JARVIS y MCP]] → descarga automática en [[Descarga de proyectos BIM]].
 
-> [!tip] Guarda los PDF oficiales en `90 RECURSOS/Adjuntos` para que JARVIS los cite.
+> [!tip] Descarga automática
+> `scripts/05_descargar_normas_oficiales.ps1` descarga 29 documentos oficiales (catálogo `scripts/catalogo_normas.csv`) y los convierte en notas → [[Indice de textos oficiales]].
 
 ↑ [[Caja de herramientas BIM]] · [[JARVIS BIM - Inicio]]

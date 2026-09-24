@@ -23,8 +23,10 @@ Estrategia del **Ministerio de Economía y Finanzas (MEF)**, a través de la Dir
 > [!important] Obligatoriedad
 > Según la RD 0007-2025-EF/63.01, la obligación para las tipologías listadas rige **desde el 14 de agosto de 2026** (12 meses después de su publicación), en las fases de **formulación y evaluación** y **ejecución** según corresponda.
 
+**Alcance reportado por el MEF** al aprobar la RD 0007-2025: más de 2 000 proyectos, entre ellos infraestructura de **riego (634)**, **establecimientos de salud hospitalarios (618)**, **educación superior universitaria (458)** y **carreteras departamentales (367)**, además de otras tipologías (p. ej. defensas ribereñas).
+
 > [!todo] Verificar
-> Revisar en **gob.pe/mef** (Normas legales) y **El Peruano** el texto completo de la RD 0007-2025-EF/63.01 y sus anexos (lista exacta de 14 tipologías), y cualquier norma posterior a septiembre de 2026.
+> La lista oficial completa de las 14 tipologías está en el anexo de la RD 0007-2025-EF/63.01: `scripts/05_descargar_normas_oficiales.ps1` la descarga (id `RD0007_2025`) y la convierte en texto → [[Indice de textos oficiales]]. Revisa también normas posteriores a septiembre de 2026.
 
 ## Recursos oficiales
 - Portal Plan BIM Perú (mef.gob.pe/planbimperu): guías, plantillas (EIR, PEB), cursos gratuitos.

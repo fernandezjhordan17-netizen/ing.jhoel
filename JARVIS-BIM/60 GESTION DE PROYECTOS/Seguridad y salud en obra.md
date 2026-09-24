@@ -8,7 +8,7 @@ actualizado: 2026-09-24
 
 ## Marco (Perú)
 - **Ley N.° 29783**, Ley de Seguridad y Salud en el Trabajo, y su reglamento (DS N.° 005-2012-TR) con modificatorias.
-- **Norma G.050** "Seguridad durante la construcción" del [[RNE - Reglamento Nacional de Edificaciones]].
+- **Norma G.050** "Seguridad durante la construcción" → [[G.050 - Seguridad durante la Construccion]].
 - Referencia internacional: **ISO 45001:2018**.
 
 ## Herramientas de gestión

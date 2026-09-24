@@ -26,7 +26,13 @@ actualizado: 2026-09-24
 ## Perú 🇵🇪
 - [[Plan BIM Peru]] · [[Guia Nacional BIM Peru]] · [[NTP-ISO 19650 Peru]] · [[Ley 32069 - Contrataciones Publicas y BIM]]
 - [[Invierte.pe - Ciclo de inversion]]
-- [[RNE - Reglamento Nacional de Edificaciones]] → [[E.020 - Cargas]] · [[E.030 - Diseno Sismorresistente]] · [[E.050 - Suelos y Cimentaciones]] · [[E.060 - Concreto Armado]] · [[E.070 - Albanileria]] · [[E.090 - Estructuras Metalicas]]
+- [[RNE - Reglamento Nacional de Edificaciones]]
+  - Estructuras: [[E.020 - Cargas]] · [[E.030 - Diseno Sismorresistente]] (ed. 2026) · [[E.031 - Aislamiento Sismico]] · [[E.050 - Suelos y Cimentaciones]] · [[E.060 - Concreto Armado]] · [[E.070 - Albanileria]] · [[E.090 - Estructuras Metalicas]] · [[Otras normas estructurales del RNE]]
+  - Arquitectura: [[A.010 - Condiciones Generales de Diseno]] · [[A.120 - Accesibilidad Universal]] · [[A.130 - Requisitos de Seguridad]]
+  - Instalaciones: [[IS.010 - Instalaciones Sanitarias]] · [[EM.010 - Instalaciones Electricas Interiores]]
+  - Generales y saneamiento: [[G.050 - Seguridad durante la Construccion]] · [[Normas OS - Obras de Saneamiento]]
+- Costos: [[Norma Tecnica de Metrados]] · Vías: [[DG-2018 - Diseno Geometrico de Carreteras]] · Sostenibilidad: [[Codigo Tecnico de Construccion Sostenible]]
+- 📜 **Textos oficiales completos**: [[Indice de textos oficiales]]
 
 ## Internacional (diseño estructural)
 - [[ACI 318]] · [[ASCE 7]] · [[AISC 360 y 341]] · [[Eurocodigos]]
@@ -35,7 +41,7 @@ actualizado: 2026-09-24
 - [[Normas de documentacion CAD]] · [[BIM en Latinoamerica y el mundo]]
 
 ## Gestión (normas de proyecto)
-- [[ISO 21502]] · [[PMBOK 7]] · [[Gestion de riesgos]] · [[Gestion de la calidad]]
+- [[ISO 21502]] · [[PMBOK 7]] · [[Gestion de riesgos]] · [[Gestion de la calidad]] · [[Normas ISO de sistemas de gestion]]
 
 > [!warning] Vigencia
 > Las normas cambian. Cada nota tiene fecha `actualizado`. JARVIS debe advertir cuando cite una norma y recomendar verificar la versión oficial vigente (ISO, INACAL, El Peruano, MVCS).

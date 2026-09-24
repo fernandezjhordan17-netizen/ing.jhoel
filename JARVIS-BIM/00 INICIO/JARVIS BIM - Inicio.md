@@ -25,9 +25,10 @@ actualizado: 2026-09-24
 ## 🚀 Empieza aquí
 1. Lee [[Como usar esta boveda]] (plugins, grafo, convenciones).
 2. Sigue la [[Ruta de aprendizaje BIM]] nivel por nivel.
-3. Ejecuta la descarga de modelos: [[Descarga de proyectos BIM]].
-4. Revisa la [[Hoja de ruta JARVIS]] para construir el agente por fases.
-5. Consulta el [[Glosario BIM]] cuando encuentres un término nuevo.
+3. Ejecuta la descarga de modelos: [[Descarga de proyectos BIM]] y de normas oficiales: [[Indice de textos oficiales]].
+4. Activa la red neuronal semántica: [[Activar la red neuronal - Smart Connections]].
+5. Revisa la [[Hoja de ruta JARVIS]] para construir el agente por fases.
+6. Consulta el [[Glosario BIM]] cuando encuentres un término nuevo.
 
 ## 🔗 Neuronas núcleo
 - Metodología: [[Que es BIM]] · [[Proceso de gestion de la informacion ISO 19650]] · [[CDE - Entorno Comun de Datos]]

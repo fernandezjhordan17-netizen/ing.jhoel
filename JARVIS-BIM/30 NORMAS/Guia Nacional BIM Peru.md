@@ -28,6 +28,7 @@ Adapta los conceptos de [[ISO 19650 - Serie completa]] (vía [[NTP-ISO 19650 Per
 - Plantillas propias alineadas a la guía: [[Plantilla - EIR]], [[Plantilla - BEP]].
 - Checklist de cumplimiento para cada entregable.
 
-> [!todo] Descarga el PDF oficial desde el portal Plan BIM Perú y guárdalo en `90 RECURSOS/Adjuntos` para que JARVIS lo cite textualmente.
+> [!todo] Texto oficial
+> `scripts/05_descargar_normas_oficiales.ps1` descarga el PDF oficial del MEF (id `GuiaNacionalBIM_2023`) y lo convierte en nota con un encabezado por sección → [[Indice de textos oficiales]]. Tras descargarlo, confirma aquí los roles y la codificación exactos de la guía.
 
 ↑ [[Plan BIM Peru]] · [[MOC Normas y Estandares]]

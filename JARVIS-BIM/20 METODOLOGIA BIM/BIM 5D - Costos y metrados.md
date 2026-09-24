@@ -10,7 +10,7 @@ actualizado: 2026-09-24
 Extraer **metrados (cantidades)** del modelo y combinarlos con precios unitarios para presupuestos, valorizaciones y control de costos.
 
 ## Flujo recomendado (Perú)
-1. Estructura de partidas según la norma de metrados vigente (Norma Técnica de Metrados para obras de edificación – referencia MVCS) y códigos del presupuesto (S10 u otro).
+1. Estructura de partidas según la [[Norma Tecnica de Metrados]] (RD 073-2010-VIVIENDA) y códigos del presupuesto (S10 u otro).
 2. Parámetro de **código de partida** en cada tipo/elemento del modelo.
 3. Extracción: tablas de planificación en [[Revit]], Quantification en [[Navisworks]], `Qto_*BaseQuantities` en [[IFC - ISO 16739]].
 4. Exportar a [[Excel]] → cruce con análisis de precios unitarios.

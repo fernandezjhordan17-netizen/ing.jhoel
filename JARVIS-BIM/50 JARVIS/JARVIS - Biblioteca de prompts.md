@@ -16,7 +16,7 @@ actualizado: 2026-09-24
 | EIR | "Redacta un EIR para [proyecto] (hospital, Z4, S2) usando [[Plantilla - EIR]] y la [[Guia Nacional BIM Peru]]." |
 | BEP | "Responde el EIR de [ruta] con un PEB usando [[Plantilla - BEP]]; marca supuestos." |
 | Revit | "En el modelo abierto, lista muros portantes sin `FireRating` por nivel. No modifiques nada." |
-| ETABS | "Con Z=0.45, U=1.0, S=1.05, TP=0.6, TL=2.0, R=7, genera el espectro y muéstrame la tabla antes de crearlo en ETABS." |
+| ETABS | "Zona 4, suelo S2 con Vs30 = 420 m/s, categoría C, sistema dual (R0 = 7, regular): interpola S, TP y TL según la E.030-2026, genera el espectro y muéstrame la tabla antes de crearlo en ETABS." |
 | Coordinación | "Resume los choques abiertos del NWF por disciplina y propone responsables." |
 | Gestión | "Prepara el reporte semanal del proyecto X con KPIs y riesgos; deja borrador de correo." |
 | Aprendizaje | "Compara el modelo Duplex con SampleHouse: ¿cuál tiene mejor estructura IFC y por qué?" |

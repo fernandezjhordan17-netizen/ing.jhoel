@@ -20,6 +20,6 @@ LandXML, exportación **IFC 4.3** (alineamientos, corredores), Data Shortcuts (r
 .NET API (`Autodesk.Civil.*` sobre la API de AutoCAD), [[Dynamo]] for Civil 3D, AutoLISP/COM → [[MCP AutoCAD y Civil 3D]].
 
 ## Normas relacionadas en Perú
-Manual de Carreteras: Diseño Geométrico **DG-2018** (MTC), normas OS del RNE para saneamiento, y la obligatoriedad BIM de tipologías viales → [[Plan BIM Peru]].
+[[DG-2018 - Diseno Geometrico de Carreteras]] (MTC), [[Normas OS - Obras de Saneamiento]] del RNE, y la obligatoriedad BIM de tipologías viales → [[Plan BIM Peru]].
 
 ↑ [[MOC Software AEC]] · [[BIM para infraestructura]] · [[BIM y GIS]]

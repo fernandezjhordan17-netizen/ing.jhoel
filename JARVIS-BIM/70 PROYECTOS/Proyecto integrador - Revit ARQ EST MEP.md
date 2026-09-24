@@ -21,6 +21,7 @@ Modelar con precisión: **columnas, vigas, losas, zapatas, escaleras**.
 - [ ] Losas aligeradas/macizas
 - [ ] Escaleras
 - [ ] Modelo analítico listo para [[ETABS]] / [[Robot Structural Analysis]]
+- Normas: [[E.020 - Cargas]] · [[E.030 - Diseno Sismorresistente]] (ed. 2026) · [[E.060 - Concreto Armado]] · [[E.050 - Suelos y Cimentaciones]]
 
 ## Módulo 2 — Revit Arquitectura
 Espacios funcionales: **muros, puertas, ventanas, pisos y acabados, detalles arquitectónicos**.
@@ -29,6 +30,7 @@ Espacios funcionales: **muros, puertas, ventanas, pisos y acabados, detalles arq
 - [ ] Pisos, contrapisos y acabados (capas de material)
 - [ ] Habitaciones (`IfcSpace`) con áreas
 - [ ] Detalles y planos de arquitectura
+- Normas: [[A.010 - Condiciones Generales de Diseno]] · [[A.120 - Accesibilidad Universal]] · [[A.130 - Requisitos de Seguridad]]
 
 ## Módulo 3 — Revit MEP
 Instalaciones **eléctricas y sanitarias coordinadas y sin colisiones**.
@@ -37,6 +39,8 @@ Instalaciones **eléctricas y sanitarias coordinadas y sin colisiones**.
 - [ ] Instalaciones eléctricas (circuitos, tableros)
 - [ ] Iluminación
 - [ ] Equipos y accesorios
+
+Normas del módulo: [[IS.010 - Instalaciones Sanitarias]] · [[EM.010 - Instalaciones Electricas Interiores]] · agua contra incendio y evacuación [[A.130 - Requisitos de Seguridad]]
 
 ## Módulo 4 — Navisworks y coordinación BIM → [[Navisworks]]
 - [ ] Exportar NWC de cada disciplina y federar (NWF) → [[Federacion de modelos]]

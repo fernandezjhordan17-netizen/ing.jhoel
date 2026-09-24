@@ -15,6 +15,8 @@ Esta bóveda es la **memoria de largo plazo**. Tres formas de conectarla:
 | **C. Plugin Local REST API (con MCP)** | Plugin de Obsidian que desde la v4 (2026) sirve MCP directamente (leer, parchear notas, búsquedas) | Respeta la estructura de Obsidian (encabezados, frontmatter); requiere Obsidian abierto y token |
 | **+ Smart Connections MCP** | Búsqueda **semántica** sobre los embeddings locales de Smart Connections (`msdanyg/smart-connections-mcp`) | La "red neuronal" real: encuentra notas por significado |
 
+Configuración completa: [[Activar la red neuronal - Smart Connections]].
+
 ## Reglas de escritura de JARVIS en la bóveda
 1. Nunca borrar notas; marcar como `estado: obsoleto`.
 2. Toda nota nueva con frontmatter y enlace a su MOC ([[Como usar esta boveda]]).

@@ -8,6 +8,7 @@ tipologia:
 ubicacion:
 zona_sismica:
 perfil_suelo:
+vs30:
 categoria_uso:
 sistema_estructural:
 fecha_inicio: "{{date}}"

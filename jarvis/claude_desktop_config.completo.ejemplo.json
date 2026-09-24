@@ -47,6 +47,16 @@
       "env": {
         "AUTOCAD_MCP_BACKEND": "auto"
       }
+    },
+    "smart-connections": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "smart-connections-mcp"
+      ],
+      "env": {
+        "SMART_VAULT_PATH": "C:\\Users\\JHORDAN\\Documents\\1.APP CREADOS\\APP PARA BIM\\ing.jhoel\\JARVIS-BIM"
+      }
     }
   }
 }

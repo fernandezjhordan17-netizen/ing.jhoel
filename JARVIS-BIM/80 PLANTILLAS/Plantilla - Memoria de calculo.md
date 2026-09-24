@@ -14,9 +14,9 @@ tags: [estructural, memoria]
 ## 2. Normas → [[E.020 - Cargas]] · [[E.030 - Diseno Sismorresistente]] · [[E.050 - Suelos y Cimentaciones]] · [[E.060 - Concreto Armado]] · [[E.070 - Albanileria]]
 ## 3. Materiales (f'c, fy, E)
 ## 4. Cargas (CM, CV, CVT)
-## 5. Parámetros sísmicos
-| Z | U | S | TP | TL | R0 | Ia | Ip | R |
-|---|---|---|---|---|---|---|---|---|
+## 5. Parámetros sísmicos (E.030-2026, RM 183-2026-VIVIENDA)
+| Zona | Z | Categoría | U | Perfil | Vs30 (m/s) | Ts (s) | S | TP | TL | Sistema | R0 | Ia | Ip | R |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 ## 6. Modelo y análisis ([[ETABS]]): modos, periodos, participación de masa
 ## 7. Cortante basal: estático vs dinámico, factor de escala
 ## 8. Derivas por piso y dirección (límite según material)

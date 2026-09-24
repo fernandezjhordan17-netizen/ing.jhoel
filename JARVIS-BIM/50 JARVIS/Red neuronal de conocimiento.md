@@ -20,6 +20,8 @@ actualizado: 2026-09-24
 ## La red neuronal "real": embeddings
 El plugin **Smart Connections** calcula **embeddings** (vectores generados por un modelo de lenguaje local) de cada nota y bloque. Así encuentra relaciones **por significado** aunque no exista un enlace escrito. Con su servidor MCP, JARVIS hace búsqueda semántica → [[MCP Obsidian - Memoria de JARVIS]]. Esto es, en la práctica, **RAG** (Retrieval-Augmented Generation): recuperar las notas relevantes y dárselas al modelo como contexto.
 
+Guía paso a paso: [[Activar la red neuronal - Smart Connections]].
+
 ## Ver la red
 - `Ctrl+G` → vista de grafo. Colores por capa (configurados en `.obsidian/graph.json`): dorado hubs, azul metodología, rojo normas, verde software, morado JARVIS, naranja gestión, cian proyectos.
 - Grafo local de una nota: clic derecho → *Abrir grafo local* (muestra sus "sinapsis" a 2–3 saltos).

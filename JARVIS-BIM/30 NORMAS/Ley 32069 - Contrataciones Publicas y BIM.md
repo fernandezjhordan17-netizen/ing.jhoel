@@ -15,6 +15,6 @@ actualizado: 2026-09-24
 - **Art. 49.3**: en proyectos de alta complejidad, la estrategia de contratación considera metodologías colaborativas (BIM), contratos estandarizados y análisis de sistemas de entrega.
 - Promueve contratos estandarizados internacionales (NEC, FIDIC) → [[Contratos NEC y FIDIC]] y enfoques [[VDC - Diseno y Construccion Virtual]] / [[Lean Construction]].
 
-> [!todo] Verificar el texto exacto de los artículos en la versión consolidada vigente (gob.pe/oece) antes de citarlos en documentos contractuales.
+> [!todo] Verificar el texto exacto de los artículos 46.6 y 49.3 en la versión consolidada vigente (gob.pe/oece). El script `05_descargar_normas_oficiales.ps1` descarga la ley (id `Ley32069`) y su reglamento (id `DS009_2025_EF`, 389 artículos) → [[Indice de textos oficiales]].
 
 ↑ [[Plan BIM Peru]] · [[MOC Gestion de Proyectos]]

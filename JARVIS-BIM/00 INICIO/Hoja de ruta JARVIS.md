@@ -18,7 +18,8 @@ actualizado: 2026-09-24
 
 ## Fase 1 — Memoria conectada (semana 1–2)
 - [ ] Instalar plugin Local REST API con MCP y conectar Obsidian a Claude → [[MCP Obsidian - Memoria de JARVIS]]
-- [ ] Instalar Smart Connections (embeddings locales)
+- [ ] Descargar normas oficiales y convertirlas en notas (`05_descargar_normas_oficiales.ps1`) → [[Indice de textos oficiales]]
+- [ ] Instalar Smart Connections (embeddings locales) → [[Activar la red neuronal - Smart Connections]]
 - [ ] Probar prompts de consulta normativa → [[JARVIS - Biblioteca de prompts]]
 
 ## Fase 2 — Ojos (solo lectura) (semana 3–6)

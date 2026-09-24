@@ -21,7 +21,7 @@ actualizado: 2026-09-24
 
 ## Inteligencia
 - [[JARVIS - Agentes especializados]] · [[JARVIS - Flujos de trabajo]] · [[JARVIS - Biblioteca de prompts]]
-- [[Red neuronal de conocimiento]] · [[IA y Machine Learning en AEC]]
+- [[Red neuronal de conocimiento]] · [[Activar la red neuronal - Smart Connections]] · [[IA y Machine Learning en AEC]]
 
 ## Confianza
 - [[JARVIS - Seguridad y gobernanza]] · [[JARVIS - Pruebas y evaluacion]]

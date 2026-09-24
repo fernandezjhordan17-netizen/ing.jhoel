@@ -24,7 +24,7 @@ actualizado: 2026-09-24
 | **Tasks** | Tareas con fechas dentro de notas de proyecto |
 | **Kanban** | Tableros de seguimiento (entregables, RFIs) |
 
-Actívalos en *Configuración → Complementos de la comunidad*.
+Actívalos en *Configuración → Complementos de la comunidad*. Guía completa de la red semántica: [[Activar la red neuronal - Smart Connections]].
 
 ## 3. Estructura de carpetas (capas de la red)
 | Carpeta | Capa | Color en grafo |

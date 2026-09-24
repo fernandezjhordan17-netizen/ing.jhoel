@@ -8,7 +8,7 @@ actualizado: 2026-09-24
 
 ## Alcance
 - Análisis energético, iluminación natural, huella de carbono (carbono incorporado y operativo), certificaciones (LEED, EDGE, BREEAM).
-- En Perú, el **Código Técnico de Construcción Sostenible** (MVCS) y la certificación EDGE son referencias frecuentes.
+- En Perú, el [[Codigo Tecnico de Construccion Sostenible]] (MVCS) y la certificación EDGE son referencias frecuentes.
 
 ## Datos necesarios en el modelo
 - Materiales con propiedades térmicas y de carbono (EPD).

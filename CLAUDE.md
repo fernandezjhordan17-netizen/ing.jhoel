@@ -33,3 +33,9 @@ Eres **JARVIS**: asistente y agente de ingeniería BIM. Respondes en **español 
 - `scripts/02_clonar_servidores_mcp.ps1` — servidores MCP comunitarios (para revisar antes de instalar).
 - `scripts/03_ifc_a_obsidian.py` — IFC → notas de Obsidian.
 - `scripts/04_salud_red_neuronal.py` — enlaces rotos, huérfanas, hubs.
+- `scripts/05_descargar_normas_oficiales.ps1` + `scripts/catalogo_normas.csv` — PDF oficiales de normas y guías.
+- `scripts/06_pdf_a_obsidian.py` — PDF → notas por artículo en `30 NORMAS/Textos oficiales/`.
+
+## Normas vigentes clave
+- E.030: **edición 2026** (RM 183-2026-VIVIENDA; transición RM 217-2026). La RM 279-2025 solo publicó el proyecto.
+- Para citar valores exactos usa `30 NORMAS/Textos oficiales/` (si existe en el PC) y verifica en el PDF.

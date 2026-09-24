@@ -6,6 +6,9 @@ JARVIS-BIM/.trash/
 JARVIS-BIM/.smart-env/
 JARVIS-BIM/.smart-connections/
 
+# PDF oficiales descargados en cada PC (scripts/05_descargar_normas_oficiales.ps1)
+JARVIS-BIM/90 RECURSOS/Adjuntos/Normas/
+
 # Modelos y binarios pesados: viven fuera del repositorio (02_PROYECTOS_BIM, 03_PROYECTOS_REALES)
 *.rvt
 *.rfa

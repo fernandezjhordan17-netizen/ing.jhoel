@@ -7,7 +7,8 @@
     2. Descarga modelos BIM abiertos y recopila los ejemplos instalados (01_descargar_proyectos_bim.ps1).
     3. Clona los servidores MCP comunitarios para revisarlos (02_clonar_servidores_mcp.ps1).
     4. Instala IfcOpenShell y convierte cada IFC en una nota de Obsidian (03_ifc_a_obsidian.py).
-    5. Verifica la salud de la red de notas (04_salud_red_neuronal.py).
+    5. Descarga los PDF oficiales de normas y guias y los convierte en notas (05 + 06).
+    6. Verifica la salud de la red de notas (04_salud_red_neuronal.py).
 
 .EXAMPLE
     cd "C:\Users\JHORDAN\Documents\1.APP CREADOS\APP PARA BIM\ing.jhoel"
@@ -18,7 +19,8 @@ param(
     [string]$Base = "C:\Users\JHORDAN\Documents\1.APP CREADOS\APP PARA BIM",
     [switch]$IncluirPesados,
     [switch]$SinServidoresMCP,
-    [switch]$SinArchivosLocales
+    [switch]$SinArchivosLocales,
+    [switch]$SinNormas
 )
 
 $ErrorActionPreference = "Continue"
@@ -58,6 +60,11 @@ if ($pyExe) {
     Write-Host ""
     Write-Host "==> Generando notas de Obsidian desde los IFC" -ForegroundColor Cyan
     & $pyExe @pyArgs (Join-Path $PSScriptRoot "03_ifc_a_obsidian.py") --entrada (Join-Path $Base "02_PROYECTOS_BIM") --boveda $Boveda --raiz-mostrada "02_PROYECTOS_BIM" | Out-Host
+    if (-not $SinNormas) {
+        Write-Host ""
+        Write-Host "==> Normas y guias oficiales (PDF -> notas)" -ForegroundColor Cyan
+        & (Join-Path $PSScriptRoot "05_descargar_normas_oficiales.ps1")
+    }
     Write-Host ""
     Write-Host "==> Salud de la red neuronal" -ForegroundColor Cyan
     & $pyExe @pyArgs (Join-Path $PSScriptRoot "04_salud_red_neuronal.py") --boveda $Boveda | Out-Host
