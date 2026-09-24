@@ -1,0 +1,86 @@
+{
+  "collapse-filter": false,
+  "search": "",
+  "showTags": true,
+  "showAttachments": false,
+  "hideUnresolved": false,
+  "showOrphans": true,
+  "collapse-color-groups": false,
+  "colorGroups": [
+    {
+      "query": "path:\"00 INICIO\" OR path:\"10 MAPAS\"",
+      "color": {
+        "a": 1,
+        "rgb": 16766720
+      }
+    },
+    {
+      "query": "path:\"20 METODOLOGIA BIM\"",
+      "color": {
+        "a": 1,
+        "rgb": 3900150
+      }
+    },
+    {
+      "query": "path:\"30 NORMAS\"",
+      "color": {
+        "a": 1,
+        "rgb": 15680580
+      }
+    },
+    {
+      "query": "path:\"40 SOFTWARE\"",
+      "color": {
+        "a": 1,
+        "rgb": 2278750
+      }
+    },
+    {
+      "query": "path:\"50 JARVIS\"",
+      "color": {
+        "a": 1,
+        "rgb": 11032055
+      }
+    },
+    {
+      "query": "path:\"60 GESTION DE PROYECTOS\"",
+      "color": {
+        "a": 1,
+        "rgb": 16347926
+      }
+    },
+    {
+      "query": "path:\"70 PROYECTOS\"",
+      "color": {
+        "a": 1,
+        "rgb": 440020
+      }
+    },
+    {
+      "query": "path:\"80 PLANTILLAS\"",
+      "color": {
+        "a": 1,
+        "rgb": 10265519
+      }
+    },
+    {
+      "query": "path:\"90 RECURSOS\"",
+      "color": {
+        "a": 1,
+        "rgb": 15485081
+      }
+    }
+  ],
+  "collapse-display": false,
+  "showArrow": true,
+  "textFadeMultiplier": -1,
+  "nodeSizeMultiplier": 1.3,
+  "lineSizeMultiplier": 1.1,
+  "collapse-forces": false,
+  "centerStrength": 0.45,
+  "repelStrength": 12,
+  "linkStrength": 1,
+  "linkDistance": 180,
+  "scale": 0.6,
+  "close": false
+}

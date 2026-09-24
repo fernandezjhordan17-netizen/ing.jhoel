@@ -1,0 +1,32 @@
+# Obsidian: estado local del espacio de trabajo y plugins instalados
+JARVIS-BIM/.obsidian/workspace*.json
+JARVIS-BIM/.obsidian/plugins/
+JARVIS-BIM/.obsidian/cache
+JARVIS-BIM/.trash/
+JARVIS-BIM/.smart-env/
+JARVIS-BIM/.smart-connections/
+
+# Modelos y binarios pesados: viven fuera del repositorio (02_PROYECTOS_BIM, 03_PROYECTOS_REALES)
+*.rvt
+*.rfa
+*.nwd
+*.nwf
+*.nwc
+*.edb
+*.sdb
+*.fdb
+*.rtd
+*.dwg
+*.ifc
+*.ifczip
+*.db1
+
+# Python / Node
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+
+# Configuración local con rutas/credenciales
+.mcp.json
+.env

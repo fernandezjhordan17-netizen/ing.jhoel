@@ -1,0 +1,11 @@
+{
+  "newFileLocation": "folder",
+  "newFileFolderPath": "00 INICIO",
+  "attachmentFolderPath": "90 RECURSOS/Adjuntos",
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": false,
+  "newLinkFormat": "shortest",
+  "showLineNumber": true,
+  "readableLineLength": true,
+  "defaultViewMode": "preview"
+}

@@ -1,0 +1,52 @@
+{
+  "mcpServers": {
+    "boveda-jarvis": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\JHORDAN\\Documents\\1.APP CREADOS\\APP PARA BIM\\ing.jhoel\\JARVIS-BIM"
+      ]
+    },
+    "excel": {
+      "command": "uvx",
+      "args": [
+        "excel-mcp-server",
+        "stdio"
+      ]
+    },
+    "revit": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "mcp-server-for-revit"
+      ]
+    },
+    "etabs": {
+      "command": "C:\\Users\\JHORDAN\\Documents\\1.APP CREADOS\\APP PARA BIM\\04_MCP_SERVERS\\CSI\\ETABS-mcp\\.venv\\Scripts\\etabs-mcp.exe",
+      "args": []
+    },
+    "robot": {
+      "command": "C:\\Users\\JHORDAN\\Documents\\1.APP CREADOS\\APP PARA BIM\\04_MCP_SERVERS\\Robot\\robot-structural-mcp\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "robot_mcp"
+      ],
+      "env": {
+        "ROBOT_MCP_MAX_ITEMS": "200"
+      }
+    },
+    "autocad": {
+      "command": "C:\\Users\\JHORDAN\\Documents\\1.APP CREADOS\\APP PARA BIM\\04_MCP_SERVERS\\AutoCAD\\autocad-mcp\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "autocad_mcp"
+      ],
+      "env": {
+        "AUTOCAD_MCP_BACKEND": "auto"
+      }
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "mcpServers": {
+    "boveda-jarvis": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:\\Users\\JHORDAN\\Documents\\1.APP CREADOS\\APP PARA BIM\\ing.jhoel\\JARVIS-BIM"
+      ]
+    },
+    "excel": {
+      "command": "uvx",
+      "args": [
+        "excel-mcp-server",
+        "stdio"
+      ]
+    }
+  }
+}
