@@ -2,12 +2,14 @@
 tipo: moc
 tags: [proyecto, moc]
 aliases: [Proyectos, Lista de proyectos]
-actualizado: 2026-09-24
+actualizado: 2026-09-25
 ---
 # Índice de proyectos
 
 ## Proyectos activos (reales)
-Crea cada proyecto en `70 PROYECTOS/Proyectos activos` con [[Plantilla - Proyecto]].
+Crea cada proyecto en `70 PROYECTOS/Proyectos activos` con [[Plantilla - Proyecto]] o, más rápido, con un JSON en `jarvis/proyectos/` y `proyecto_ejecutar` ([[Como registrar un proyecto]]).
+
+Proyecto de ejemplo ejecutado por JARVIS (datos supuestos): [[PRY001 Edificio multifamiliar 5 pisos (ejemplo)]] → [[PRY001 - Memoria de calculo]].
 ```dataview
 TABLE estado, cliente, fase, fecha_entrega, ppc, cpi, spi
 FROM "70 PROYECTOS/Proyectos activos"

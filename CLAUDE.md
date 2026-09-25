@@ -25,7 +25,7 @@ Eres **JARVIS**: asistente y agente de ingeniería BIM. Respondes en **español 
 - Tras editar notas, ejecuta `python scripts/04_salud_red_neuronal.py` (debe terminar en "SANA").
 
 ## Servidor MCP propio
-`jarvis-mcp/` (paquete `jarvis_bim`, SDK mcp 2.x): herramientas `e030_*`, `boveda_*`, `iso19650_*`, `ifc_*`, `csi_*`. Pruebas: `cd jarvis-mcp && python -m pytest -q` (deben pasar todas antes de hacer commit). Instalación en Windows: `scripts/07_instalar_jarvis_mcp.ps1`.
+`jarvis-mcp/` (paquete `jarvis_bim`, SDK mcp 2.x): herramientas `e030_*`, `e060_*`, `proyecto_ejecutar`, `boveda_*`, `iso19650_*`, `ifc_*`, `csi_*`. Pruebas: `cd jarvis-mcp && python -m pytest -q` (deben pasar todas antes de hacer commit). Instalación en Windows: `scripts/07_instalar_jarvis_mcp.ps1`.
 
 ## Agentes especializados
 `.claude/agents/`: `jarvis-coordinador-bim`, `jarvis-estructural`, `jarvis-gestor-proyectos`, `jarvis-auditor-calidad`.
@@ -38,6 +38,7 @@ Eres **JARVIS**: asistente y agente de ingeniería BIM. Respondes en **español 
 - `scripts/04_salud_red_neuronal.py` — enlaces rotos, huérfanas, hubs.
 - `scripts/05_descargar_normas_oficiales.ps1` + `scripts/catalogo_normas.csv` — PDF oficiales de normas y guías.
 - `scripts/06_pdf_a_obsidian.py` — PDF → notas por artículo en `30 NORMAS/Textos oficiales/`.
+- `scripts/08_ejecutar_proyecto.py` — ejecuta un proyecto desde `jarvis/proyectos/<codigo>.json` (dry-run; `--confirmar` escribe memoria Excel y notas).
 
 ## Normas vigentes clave
 - E.030: **edición 2026** (RM 183-2026-VIVIENDA; transición RM 217-2026). La RM 279-2025 solo publicó el proyecto.

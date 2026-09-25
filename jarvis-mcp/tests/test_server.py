@@ -2,6 +2,7 @@
 import json
 import shutil
 import sys
+from pathlib import Path
 
 import anyio
 import pytest
@@ -41,7 +42,7 @@ def test_lista_herramientas_y_prompts():
     tools, prompts = anyio.run(_sesion, fn)
     for nombre in ("e030_espectro", "e030_cortante_basal", "boveda_buscar", "iso19650_validar_nombre",
                    "ifc_resumen", "csi_crear_espectro_e030", "csi_derivas", "e060_flexion_viga",
-                   "e060_cortante_viga", "ifc_metrados", "csi_crear_combinaciones_e060"):
+                   "e060_cortante_viga", "ifc_metrados", "csi_crear_combinaciones_e060", "proyecto_ejecutar"):
         assert nombre in tools
     assert tools["boveda_buscar"].annotations.read_only_hint
     assert not tools["csi_crear_espectro_e030"].annotations.read_only_hint
@@ -107,3 +108,20 @@ def test_flexion_desde_mcp():
         return await c.call_tool("e060_flexion_viga", {"mu_knm": 120, "b_mm": 300, "h_mm": 600})
     d = _datos(anyio.run(_sesion, fn))
     assert d["phi_Mn_kNm"] >= 120 and d["barras"]
+
+
+def test_proyecto_desde_mcp(boveda_temporal):
+    ejemplo = Path(__file__).resolve().parents[2] / "jarvis" / "proyectos" / "PRY001_ejemplo.json"
+    config = json.loads(ejemplo.read_text(encoding="utf-8")) | {"codigo": "PRYTEST"}
+    memoria = boveda_temporal / "70 PROYECTOS" / "Proyectos activos" / "PRYTEST - Memoria de calculo.md"
+    async def fn(c):
+        seco = await c.call_tool("proyecto_ejecutar", {"ruta_config": str(ejemplo)})
+        escrito_en_seco = memoria.exists()
+        real = await c.call_tool("proyecto_ejecutar", {"config": config, "confirmar": True})
+        mal = await c.call_tool("proyecto_ejecutar", {})
+        return seco, escrito_en_seco, real, mal
+    seco, escrito_en_seco, real, mal = anyio.run(_sesion, fn)
+    d = _datos(seco)
+    assert d["dry_run"] and d["sismo"]["X"]["R"] == 7 and not escrito_en_seco
+    assert not _datos(real)["dry_run"] and memoria.exists()
+    assert mal.is_error and "ruta_config" in mal.content[0].text

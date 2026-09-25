@@ -77,3 +77,11 @@ def test_plan_combinaciones_espectral():
 def test_plan_combinaciones_estatico_con_signos():
     nombres = [p["nombre"] for p in e060.plan_combinaciones(["CM"], ["CV"], ["SX"], sismo_espectral=False, envolvente=None)]
     assert nombres == ["U1", "U2_SX+", "U3_SX+", "U2_SX-", "U3_SX-"]
+
+
+def test_cortante_excepcion_vigas_chatas():
+    # 11.5.6.1 c): h ≤ máx(250 mm; 0,5·bw) no exige Av mín si no hace falta Vs
+    r = e060.cortante_viga(12, 200, 142.5, h_mm=200)
+    assert r["exceptuada_11_5_6_1c"] and not r["requiere_estribos"]
+    r2 = e060.cortante_viga(12, 200, 142.5)
+    assert r2["requiere_refuerzo_minimo"] and r2["s_diseno_mm"] <= 142.5 / 2

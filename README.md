@@ -8,7 +8,8 @@ Cerebro de conocimiento (bóveda de **Obsidian**) y herramientas para construir 
 | `JARVIS-BIM/` | Bóveda de Obsidian: **289 notas** y **3 480+ enlaces**, con **13 textos oficiales del RNE** completos (E.010–E.100, EM.110), organizadas como una red (MOCs → conceptos → normas → software → MCP → gestión → proyectos) |
 | `JARVIS-BIM/70 PROYECTOS/Proyectos de estudio/` | **99 modelos IFC reales** (Duplex, Revit ARC/STR/MEP, SampleHouse, puentes/vías/ferrovías IFC 4.3…) analizados automáticamente |
 | `scripts/` | Descarga de modelos BIM, clonado de servidores MCP, conversor IFC → Obsidian, verificador del grafo, **descarga de 29 normas y guías oficiales** (`catalogo_normas.csv`) y conversor PDF → notas por artículo |
-| `jarvis-mcp/` | **Servidor MCP propio `jarvis-bim`**: 29 herramientas (E.030-2026, E.060, metrados IFC, bóveda, ISO 19650, ETABS/SAP2000) y 70 pruebas |
+| `jarvis-mcp/` | **Servidor MCP propio `jarvis-bim`**: 30 herramientas (E.020, E.030-2026, E.060, ejecución de proyectos, metrados IFC, bóveda, ISO 19650, ETABS/SAP2000) y 80 pruebas |
+| `jarvis/proyectos/` | Datos de proyectos en JSON para `proyecto_ejecutar` / `scripts/08_ejecutar_proyecto.py` (ejemplo PRY001) |
 | `jarvis/` | Configuraciones de Claude Desktop / Claude Code para los servidores MCP |
 | `.claude/agents/` | Agentes especializados: coordinador BIM, estructural, gestor de proyectos, auditor de calidad |
 | `CLAUDE.md` | Instrucciones de comportamiento de JARVIS |
@@ -30,6 +31,12 @@ powershell -ExecutionPolicy Bypass -File .\scripts\INSTALAR_JARVIS_BIM.ps1
 Conectar JARVIS a Claude Desktop (servidor propio):
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\07_instalar_jarvis_mcp.ps1
+```
+
+Ejecutar un proyecto (memoria E.020 → E.030-2026 → E.060 en Excel + notas en la bóveda):
+```powershell
+python .\scripts\08_ejecutar_proyecto.py .\jarvis\proyectos\PRY001_ejemplo.json            # dry-run
+python .\scripts\08_ejecutar_proyecto.py .\jarvis\proyectos\PRY001_ejemplo.json --confirmar
 ```
 
 Luego: Obsidian → *Abrir carpeta como bóveda* → `ing.jhoel\JARVIS-BIM` → nota **"JARVIS BIM - Inicio"** → `Ctrl+G` para ver la red.

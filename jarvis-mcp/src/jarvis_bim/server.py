@@ -10,7 +10,7 @@ from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ToolError
 from mcp.types import ToolAnnotations
 
-from . import __version__, bitacora, e030, e060, ifc, metrados, nomenclatura, reportes
+from . import __version__, bitacora, e020, e030, e060, ifc, metrados, nomenclatura, proyecto, reportes
 from .boveda import Boveda
 from .etabs import ErrorCSI, puente
 
@@ -37,7 +37,8 @@ Barra = Literal[tuple(e060.BARRAS)]  # type: ignore[valid-type]
 servidor = MCPServer(name="jarvis-bim", title="JARVIS BIM", version=__version__, instructions=INSTRUCCIONES)
 
 
-ERRORES_ESPERADOS = (e030.ErrorNorma, e060.ErrorE060, ErrorCSI, FileNotFoundError, KeyError, ValueError, RuntimeError)
+ERRORES_ESPERADOS = (e030.ErrorNorma, e060.ErrorE060, e020.ErrorE020, proyecto.ErrorProyecto, ErrorCSI,
+                     FileNotFoundError, KeyError, ValueError, RuntimeError)
 
 
 def herramienta(anotaciones: ToolAnnotations):
@@ -153,9 +154,10 @@ def e060_flexion_viga(mu_knm: float, b_mm: float, h_mm: float, fc_mpa: float = 2
 
 @herramienta(LECTURA)
 def e060_cortante_viga(vu_kn: float, b_mm: float, d_mm: float, fc_mpa: float = 21, fy_mpa: float = 420,
-                       estribo: Barra = "3/8", ramas: int = 2) -> dict:
-    """Estribos por cortante: φVc = 0,85·0,17·√f'c·b·d, Vs requerido, espaciamiento calculado, máximo y de diseño."""
-    return e060.cortante_viga(vu_kn, b_mm, d_mm, fc_mpa, fy_mpa, estribo, ramas)
+                       estribo: Barra = "3/8", ramas: int = 2, h_mm: float | None = None) -> dict:
+    """Estribos por cortante: φVc = 0,85·0,17·√f'c·b·d, Vs requerido, espaciamiento calculado, máximo y de diseño.
+    Con h_mm aplica la excepción de refuerzo mínimo 11.5.6.1 c) (h ≤ máx(250 mm; 0,5·bw))."""
+    return e060.cortante_viga(vu_kn, b_mm, d_mm, fc_mpa, fy_mpa, estribo, ramas, h_mm)
 
 
 @herramienta(LECTURA)
@@ -311,6 +313,36 @@ def csi_correr_analisis(confirmar: bool = False, programa: Programa = "ETABS") -
     return r
 
 
+# ------------------------------------------------------------------ Proyectos --------------------
+@herramienta(ESCRITURA)
+def proyecto_ejecutar(ruta_config: str | None = None, config: dict | None = None, confirmar: bool = False) -> dict:
+    """Ejecuta un proyecto de punta a punta desde su JSON (ver jarvis/proyectos/PRY001_ejemplo.json): pesos por nivel
+    (E.020, art. 31 E.030), parámetros de sitio, espectro y cortante estática por dirección (E.030-2026), combinaciones
+    E.060 para ETABS, diseño de vigas y columnas, metrado IFC opcional. Sin confirmar=true es dry-run y no escribe;
+    con confirmar=true escribe la memoria Excel, la nota de memoria y la nota del proyecto en la bóveda."""
+    if (ruta_config is None) == (config is None):
+        raise ValueError("Indica ruta_config (archivo JSON) o config (objeto), uno solo.")
+    cfg = proyecto.cargar(ruta_config) if ruta_config else dict(config)
+    r = proyecto.ejecutar(cfg, confirmar=confirmar, boveda=_boveda().raiz)
+    if confirmar:
+        _boveda().recargar()
+    # respuesta compacta: el detalle completo va al Excel y a la nota de memoria
+    return {k: r[k] for k in ("proyecto", "dry_run", "mensaje", "resumen", "alertas", "pendientes", "archivos")} | {
+        "pesos": r["pesos"], "sismo": {d: {"T_s": s["T_s"], "fuente_T": s["fuente_T"], "R": s["estatica"]["R"],
+                                          "C": s["estatica"]["C"], "V": s["estatica"]["V"],
+                                          "fuerzas_por_nivel": s["estatica"]["fuerzas_por_nivel"],
+                                          "V_minima_dinamica_kN": s["V_minima_dinamica_kN"],
+                                          "escalamiento": s.get("escalamiento"), "derivas": s.get("derivas")}
+                                      for d, s in r["sismo"].items()},
+        "vigas": [{"id": v["id"], "As_mm2": v.get("flexion", {}).get("As_diseno_mm2"),
+                   "barras": (v.get("flexion", {}).get("barras") or [{}])[0].get("barras"),
+                   "estribos": v.get("cortante", {}).get("estribos"), "error": v.get("error")}
+                  for v in r["concreto"]["vigas"]],
+        "columnas": [{"id": c["id"], "phi_Pn_max_kN": c.get("axial", {}).get("phi_Pn_max_kN"),
+                      "uso_%": c.get("axial", {}).get("uso_%"), "cumple": c.get("axial", {}).get("cumple")}
+                     for c in r["concreto"]["columnas"]]}
+
+
 # ------------------------------------------------------------------ Prompts --------------------
 @servidor.prompt(title="Flujo sísmico E.030-2026 en ETABS")
 def flujo_sismico_e030(proyecto: str) -> str:
@@ -325,7 +357,8 @@ def flujo_sismico_e030(proyecto: str) -> str:
    (o csi_correr_analisis con confirmar=true).
 7. csi_reacciones_base y e030_cortante_basal → e030_escalamiento_dinamico.
 8. csi_derivas con R y material → reporte con pendientes marcados.
-9. Borrador de memoria con la plantilla 'Plantilla - Memoria de calculo'. El ingeniero revisa y firma."""
+9. proyecto_ejecutar con el JSON del proyecto (dry-run → confirmar) para la memoria Excel y las notas del proyecto,
+   con V dinámica y derivas en 'resultados_etabs'. El ingeniero revisa y firma."""
 
 
 @servidor.prompt(title="Consulta normativa con cita")

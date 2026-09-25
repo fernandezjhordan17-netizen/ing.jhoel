@@ -16,6 +16,7 @@ REFERENCIAS = {
     "as_min": "E.060 10.5.2 (ec. 10-3): As mín = 0,22·√f'c/fy·bw·d",
     "vc": "E.060 11.3.1.1 (ec. 11-3): Vc = 0,17·√f'c·bw·d",
     "s_max": "E.060 11.5.5.1 (d/2 ≤ 600 mm) y 11.5.5.3 (mitad si Vs > 0,33·√f'c·bw·d)",
+    "excepcion_av_min": "E.060 11.5.6.1: sin Av mín si Vu ≤ 0,5·φVc, o en losas, aligerados y vigas con h ≤ máx(250 mm; 2,5·t ala; 0,5·bw)",
     "av_min": "E.060 11.5.6.2 (ec. 11-13): Av mín = 0,062·√f'c·bw·s/fyt ≥ 0,35·bw·s/fyt",
     "vs_max": "E.060 11.5.7.9: Vs ≤ 0,66·√f'c·bw·d",
     "pn_max": "E.060 10.3.6.1 (espiral, ec. 10-1: 0,85) y 10.3.6.2 (estribos, ec. 10-2: 0,80)",
@@ -124,8 +125,10 @@ def flexion_viga(mu_knm: float, b_mm: float, h_mm: float, fc: float = 21, fy: fl
 
 
 def cortante_viga(vu_kn: float, b_mm: float, d_mm: float, fc: float = 21, fy: float = 420,
-                  estribo: str = "3/8", ramas: int = 2) -> dict:
-    """Diseño por cortante (art. 11): φVc, Vs requerido, espaciamiento calculado y máximo."""
+                  estribo: str = "3/8", ramas: int = 2, h_mm: float | None = None) -> dict:
+    """Diseño por cortante (art. 11): φVc, Vs requerido, espaciamiento calculado y máximo.
+
+    Con h_mm, aplica la excepción 11.5.6.1 c) (vigas con h ≤ máx(250 mm; 0,5·bw)) al refuerzo mínimo."""
     _validar(fc, fy, b_mm, d_mm)
     phi = PHI["cortante"]
     vu = abs(vu_kn) * 1e3
@@ -139,17 +142,21 @@ def cortante_viga(vu_kn: float, b_mm: float, d_mm: float, fc: float = 21, fy: fl
     s_calc = av * fy * d_mm / vs_req if vs_req > 0 else float("inf")
     av_min_s = max(0.062 * math.sqrt(fc), 0.35) * b_mm / fy  # Av/s mínimo
     s_min_ref = av / av_min_s
-    requiere_minimo = vu > 0.5 * phi * vc
+    exceptuada = h_mm is not None and h_mm <= max(250.0, 0.5 * b_mm)
+    requiere_minimo = vu > 0.5 * phi * vc and not exceptuada
     s = min(s_calc, s_max, s_min_ref if requiere_minimo else float("inf"))
     s_diseno = math.floor(s / 25) * 25
+    requiere_estribos = vs_req > 0 or requiere_minimo
     return {
         "norma": NORMA, "phi": phi, "phi_Vc_kN": round(phi * vc / 1e3, 2), "Vs_requerido_kN": round(vs_req / 1e3, 2),
         "Av_mm2": av, "s_calculado_mm": None if s_calc == float("inf") else round(s_calc, 1),
         "s_maximo_mm": round(s_max, 1), "s_diseno_mm": s_diseno,
-        "estribos": f"Ø {estribo} ({ramas} ramas) @ {s_diseno} mm",
-        "requiere_refuerzo_minimo": requiere_minimo,
+        "estribos": f"Ø {estribo} ({ramas} ramas) @ {s_diseno} mm" if requiere_estribos
+        else "no requiere por cálculo (11.5.6.1); estribos de montaje a criterio",
+        "requiere_refuerzo_minimo": requiere_minimo, "requiere_estribos": requiere_estribos,
+        "exceptuada_11_5_6_1c": exceptuada,
         "nota": "En vigas sismorresistentes (cap. 21) rigen además el confinamiento en 2h y el diseño por capacidad.",
-        "referencias": [REFERENCIAS[k] for k in ("vc", "s_max", "av_min", "vs_max")],
+        "referencias": [REFERENCIAS[k] for k in ("vc", "s_max", "excepcion_av_min", "av_min", "vs_max")],
     }
 
 

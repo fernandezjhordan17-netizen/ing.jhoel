@@ -1,0 +1,46 @@
+{
+  "codigo": "PRY001",
+  "nombre": "Edificio multifamiliar 5 pisos (ejemplo)",
+  "cliente": "Ejemplo JARVIS (datos supuestos)",
+  "ubicacion": "Lima, Lima - verificar zona en el Anexo II de la E.030-2026",
+  "tipologia": "Vivienda multifamiliar",
+  "fase": "expediente",
+  "inversion": "privada",
+  "sismo": {
+    "zona": 4,
+    "perfil": "S2",
+    "vs30": 420,
+    "categoria": "C",
+    "direcciones": {
+      "X": {"sistema": "concreto_dual", "irregularidades": []},
+      "Y": {"sistema": "concreto_muros", "irregularidades": []}
+    }
+  },
+  "materiales": {"fc_mpa": 21, "fy_mpa": 420},
+  "cargas": {
+    "uso": "vivienda",
+    "aligerado_m": 0.20,
+    "acabados_kpa": 1.0,
+    "tabiqueria_kpa": 1.5,
+    "estructura_kpa": 2.5
+  },
+  "niveles": [
+    {"nombre": "Piso 1", "altura_entrepiso_m": 2.70, "area_m2": 280},
+    {"nombre": "Piso 2", "altura_entrepiso_m": 2.70, "area_m2": 280},
+    {"nombre": "Piso 3", "altura_entrepiso_m": 2.70, "area_m2": 280},
+    {"nombre": "Piso 4", "altura_entrepiso_m": 2.70, "area_m2": 280},
+    {"nombre": "Azotea", "altura_entrepiso_m": 2.70, "area_m2": 280, "azotea": true, "tabiqueria_kpa": 0}
+  ],
+  "casos_etabs": {"cm": ["Dead", "SCP"], "cv": ["Live", "LiveTecho"], "sismo": ["SX", "SY"], "sismo_espectral": true},
+  "vigas": [
+    {"id": "V-101 (eje A, tramo 1-2)", "b_mm": 250, "h_mm": 500, "mu_knm": 95, "vu_kn": 110},
+    {"id": "V-102 (eje B, tramo 2-3)", "b_mm": 300, "h_mm": 600, "mu_knm": 180, "vu_kn": 160},
+    {"id": "VCH-01 (chata)", "b_mm": 200, "h_mm": 200, "mu_knm": 6, "vu_kn": 12}
+  ],
+  "columnas": [
+    {"id": "C-1 (esquina)", "b_mm": 400, "h_mm": 400, "pu_kn": 1400, "barras": [8, "3/4"]},
+    {"id": "C-2 (central)", "b_mm": 300, "h_mm": 600, "pu_kn": 1800, "barras": [10, "5/8"]}
+  ],
+  "resultados_etabs": {},
+  "modelo_ifc": null
+}

@@ -3,17 +3,18 @@ tipo: mcp
 tags: [mcp, jarvis, e030, python]
 aliases: [jarvis-bim, Servidor MCP propio, jarvis-bim-mcp]
 version: 0.1.0
-actualizado: 2026-09-24
+actualizado: 2026-09-25
 ---
 # MCP JARVIS BIM — servidor propio (`jarvis-bim`)
 
-Primer servidor MCP construido para JARVIS (carpeta `jarvis-mcp/` del repositorio). SDK oficial de Python **mcp 2.x** (`MCPServer`), transporte stdio, **29 herramientas** y 2 prompts. **70 pruebas automáticas** (cálculo, bóveda, IFC, puente ETABS simulado, servidor en memoria y por stdio).
+Primer servidor MCP construido para JARVIS (carpeta `jarvis-mcp/` del repositorio). SDK oficial de Python **mcp 2.x** (`MCPServer`), transporte stdio, **30 herramientas** y 2 prompts. **80 pruebas automáticas** (cálculo, bóveda, IFC, puente ETABS simulado, ejecución de proyectos, servidor en memoria y por stdio).
 
 ## Herramientas
 | Grupo | Herramientas | Base de conocimiento |
 |---|---|---|
 | Norma sísmica | `e030_parametros_sitio`, `e030_espectro` (+ Excel con gráfico), `e030_cortante_basal`, `e030_periodo_aproximado`, `e030_escalamiento_dinamico`, `e030_verificar_derivas`, `e030_restricciones`, `e030_opciones` | [[E.030 - Diseno Sismorresistente]] (ed. 2026) |
-| Concreto armado | `e060_combinaciones`, `e060_flexion_viga`, `e060_cortante_viga`, `e060_columna_axial` | [[E.060 - Concreto Armado]] (verificado con [[Texto oficial - E060]]) |
+| Concreto armado | `e060_combinaciones`, `e060_flexion_viga`, `e060_cortante_viga` (con excepción 11.5.6.1 c), `e060_columna_axial` | [[E.060 - Concreto Armado]] (verificado con [[Texto oficial - E060]]); pesos con [[E.020 - Cargas]] |
+| Proyectos | `proyecto_ejecutar` (dry-run → `confirmar=true`): JSON del proyecto → pesos E.020 → E.030 por dirección → E.060 → memoria Excel + notas del proyecto | [[Indice de proyectos]], [[PRY001 - Memoria de calculo]] |
 | Metrados | `ifc_metrados` (+ Excel) | [[Norma Tecnica de Metrados]], [[BIM 5D - Costos y metrados]] |
 | Memoria | `boveda_buscar` (devuelve la sección exacta), `boveda_leer`, `boveda_mapas`, `boveda_estadisticas` | [[Red neuronal de conocimiento]], [[Indice de textos oficiales]] |
 | Gestión de información | `iso19650_validar_nombre`, `iso19650_validar_carpeta` | [[Nomenclatura de archivos y contenedores]] |
@@ -25,6 +26,9 @@ Prompts: `flujo_sismico_e030` (receta completa del análisis) y `consulta_normat
 ## Ejemplo verificado a mano
 Zona 4, S2 con Vs30 = 420 m/s, categoría C, dual regular (R = 7), T = 0,62 s, P = 12 000 kN:
 S = 1,065 · TP = 0,53 s · TL = 2,175 s · C = 2,5·0,53/0,62 = 2,137 · **V = 0,45·1,0·2,137·1,065/7 · 12 000 = 1 755,8 kN** · k = 1,06.
+
+## Ejecución de un proyecto completo
+`python scripts/08_ejecutar_proyecto.py jarvis/proyectos/PRY001_ejemplo.json` (dry-run) y luego con `--confirmar`, o desde Claude: *"JARVIS, ejecuta el proyecto PRY001"* → `proyecto_ejecutar`. Resultado del ejemplo (datos supuestos): P = 11 410 kN, hn = 13,5 m, T = 0,225 s → **V_X = 1 952,9 kN (dual, R = 7)** y **V_Y = 2 278,4 kN (muros, R = 6)** → [[PRY001 Edificio multifamiliar 5 pisos (ejemplo)]].
 
 ## Seguridad incorporada ([[JARVIS - Seguridad y gobernanza]])
 - Herramientas marcadas como **solo lectura** o **escritura** (anotaciones MCP).

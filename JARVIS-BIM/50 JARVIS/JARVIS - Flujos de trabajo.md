@@ -2,7 +2,7 @@
 tipo: jarvis
 tags: [jarvis, flujos, automatizacion]
 aliases: [Workflows JARVIS, Recetas JARVIS]
-actualizado: 2026-09-24
+actualizado: 2026-09-25
 ---
 # JARVIS — Flujos de trabajo (recetas)
 
@@ -21,6 +21,7 @@ actualizado: 2026-09-24
 4. [[MCP CSI - ETABS SAP2000 SAFE]]: crear función, casos, masa, combinaciones ([[E.060 - Concreto Armado]]) → correr análisis.
 5. Leer derivas y cortantes; escalar si corresponde; comparar con límites.
 6. Tablas a Excel y borrador de memoria ([[Plantilla - Memoria de calculo]]). 🧑 El ingeniero revisa y firma.
+7. Todo lo anterior en un paso: `proyecto_ejecutar` con el JSON del proyecto (`jarvis/proyectos/`), primero en dry-run y luego con `confirmar=true` → Excel, [[PRY001 - Memoria de calculo]] y nota del proyecto; al volver de ETABS se copian V dinámica y derivas en `resultados_etabs` y se re-ejecuta.
 
 ## 4. Cimentación ETABS → SAFE
 Exportar F2K → SAFE → balasto del EMS ([[E.050 - Suelos y Cimentaciones]]) → presiones, punzonamiento → reporte.
