@@ -32,6 +32,28 @@ def _sin_tildes(texto: str) -> str:
     return "".join(c for c in unicodedata.normalize("NFD", texto) if unicodedata.category(c) != "Mn")
 
 
+def _plano(texto: str) -> str:
+    """Minúsculas sin tildes conservando la longitud (para ubicar posiciones en el texto original)."""
+    return "".join(unicodedata.normalize("NFD", c)[0] for c in texto.lower())
+
+
+def _ventana_minima(posiciones: list[tuple[int, int]], distintos: int) -> int:
+    """Menor tramo de texto que contiene los `distintos` términos (proximidad)."""
+    if distintos == 0:
+        return 10 ** 9
+    cuenta: Counter = Counter()
+    mejor, j = 10 ** 9, 0
+    for pos, t in posiciones:
+        cuenta[t] += 1
+        while len(cuenta) == distintos:
+            mejor = min(mejor, pos - posiciones[j][0])
+            cuenta[posiciones[j][1]] -= 1
+            if not cuenta[posiciones[j][1]]:
+                del cuenta[posiciones[j][1]]
+            j += 1
+    return mejor
+
+
 def _tokens(texto: str) -> list[str]:
     salida = []
     for t in RE_PALABRA.findall(_sin_tildes(_normalizar(texto))):
@@ -105,15 +127,46 @@ class Boveda:
             if s > 0:
                 puntajes.append((s, n))
         puntajes.sort(key=lambda x: -x[0])
-        return [{"nota": n.nombre, "ruta": self._rel(n), "puntaje": round(s, 3), "fragmento": self._fragmento(n, q)}
-                for s, n in puntajes[:limite]]
+        candidatos = []
+        for bm25, n in puntajes[:max(limite * 3, 15)]:
+            seccion, fragmento, (distintos, cercania) = self._fragmento(n, q)
+            ventana = -cercania
+            candidatos.append(((distintos, ventana <= 12 * len(q) * 8, bm25), {
+                "nota": n.nombre, "ruta": self._rel(n), "puntaje": round(bm25, 3),
+                "seccion": seccion, "fragmento": fragmento}))
+        # reordenar: más términos en la sección > términos juntos (frase) > relevancia BM25 de la nota
+        candidatos.sort(key=lambda c: c[0], reverse=True)
+        return [c[1] for c in candidatos[:limite]]
 
-    def _fragmento(self, nota: Nota, q: list[str], ancho: int = 240) -> str:
+    def _fragmento(self, nota: Nota, q: list[str], ancho: int = 280) -> tuple[str, str, tuple]:
+        """(sección, fragmento, puntaje): la sección donde aparecen más términos y más juntos."""
         cuerpo = nota.texto.split("---", 2)[-1] if nota.texto.startswith("---") else nota.texto
-        plano = _sin_tildes(cuerpo.lower())
+        secciones = re.split(r"(?m)^(?=#{1,6} )", cuerpo)
+
+        alias = re.search(r"^aliases:\s*\[(.*)\]", nota.texto, re.M)
+        plano_titulo = _plano(nota.nombre + " " + (alias.group(1) if alias else ""))
+        en_titulo = {t for t in q if t in plano_titulo}
+        resto = [t for t in dict.fromkeys(q) if t not in en_titulo]
+
+        def puntaje(sec: str) -> tuple[int, float]:
+            plano = _plano(sec)
+            posiciones = []
+            for i, t in enumerate(resto):
+                inicio, n = plano.find(t), 0
+                while inicio >= 0 and n < 200:
+                    posiciones.append((inicio, i))
+                    inicio, n = plano.find(t, inicio + 1), n + 1
+            distintos = len({i for _, i in posiciones})
+            ventana = _ventana_minima(sorted(posiciones), distintos) if distintos else 0
+            return distintos + len(en_titulo), -ventana
+
+        mejor = max(secciones, key=puntaje) if len(secciones) > 1 else cuerpo
+        calidad = puntaje(mejor)
+        titulo = mejor.splitlines()[0].lstrip("# ").strip() if mejor.startswith("#") else ""
+        plano = _plano(mejor)
         pos = min([plano.find(t) for t in q if plano.find(t) >= 0], default=0)
         ini = max(0, pos - ancho // 3)
-        return " ".join(cuerpo[ini:ini + ancho].split())
+        return titulo, " ".join(mejor[ini:ini + ancho].split()), calidad
 
     def leer(self, nombre: str, max_caracteres: int = 20000) -> dict:
         n = self.notas.get(_normalizar(nombre))

@@ -7,9 +7,19 @@ from __future__ import annotations
 import math
 
 NORMA = "E.060-2009 (DS 010-2009-VIVIENDA)"
-PENDIENTES = {
-    "as_min": "As mín = 0,22·√f'c/fy·b·d (MPa; equivale a 0,7·√f'c/fy en kgf/cm²): confirmar art. 10.5.2 en el texto oficial.",
-    "av_min": "Av mín = 0,062·√f'c·b·s/fy ≥ 0,35·b·s/fy (forma ACI 318): confirmar en el texto oficial.",
+PENDIENTES: dict[str, str] = {}  # todo verificado contra el texto oficial (SENCICO, DS 010-2009-VIVIENDA)
+REFERENCIAS = {
+    "combinaciones": "E.060 9.2.1–9.2.5 (ec. 9-1 a 9-7); 9.2.4: no combinar sismo y viento",
+    "phi": "E.060 9.3.2.1–9.3.2.5",
+    "beta1": "E.060 10.2.7.3",
+    "as_max": "E.060 10.3.4: As ≤ 0,75·Asb",
+    "as_min": "E.060 10.5.2 (ec. 10-3): As mín = 0,22·√f'c/fy·bw·d",
+    "vc": "E.060 11.3.1.1 (ec. 11-3): Vc = 0,17·√f'c·bw·d",
+    "s_max": "E.060 11.5.5.1 (d/2 ≤ 600 mm) y 11.5.5.3 (mitad si Vs > 0,33·√f'c·bw·d)",
+    "av_min": "E.060 11.5.6.2 (ec. 11-13): Av mín = 0,062·√f'c·bw·s/fyt ≥ 0,35·bw·s/fyt",
+    "vs_max": "E.060 11.5.7.9: Vs ≤ 0,66·√f'c·bw·d",
+    "pn_max": "E.060 10.3.6.1 (espiral, ec. 10-1: 0,85) y 10.3.6.2 (estribos, ec. 10-2: 0,80)",
+    "cuantia_columna": "E.060 10.9.1: 0,01 ≤ Ast/Ag ≤ 0,06",
 }
 
 # Art. 9.3.2 — factores de reducción de resistencia
@@ -109,7 +119,7 @@ def flexion_viga(mu_knm: float, b_mm: float, h_mm: float, fc: float = 21, fy: fl
         "cuantia": round(as_diseno / (b_mm * d), 5), "cuantia_balanceada": round(rho_b, 5),
         "cumple_maximo": as_diseno <= as_max, "phi_Mn_kNm": round(phi_mn, 2),
         "barras": sugerir_barras(as_diseno, b_mm, recubrimiento_mm, estribo),
-        "pendientes": [PENDIENTES["as_min"]],
+        "referencias": [REFERENCIAS[k] for k in ("as_min", "as_max", "beta1", "phi")],
     }
 
 
@@ -139,7 +149,7 @@ def cortante_viga(vu_kn: float, b_mm: float, d_mm: float, fc: float = 21, fy: fl
         "estribos": f"Ø {estribo} ({ramas} ramas) @ {s_diseno} mm",
         "requiere_refuerzo_minimo": requiere_minimo,
         "nota": "En vigas sismorresistentes (cap. 21) rigen además el confinamiento en 2h y el diseño por capacidad.",
-        "pendientes": [PENDIENTES["av_min"]],
+        "referencias": [REFERENCIAS[k] for k in ("vc", "s_max", "av_min", "vs_max")],
     }
 
 
@@ -159,6 +169,7 @@ def columna_axial(pu_kn: float, b_mm: float, h_mm: float, as_total_mm2: float, f
         "phi_Pn_max_kN": round(phi_pn, 1), "Pu_kN": pu_kn, "cumple": pu_kn <= phi_pn,
         "uso_%": round(100 * pu_kn / phi_pn, 1),
         "nota": "Solo carga axial: con flexión, verifica con el diagrama de interacción (ETABS/SAP2000).",
+        "referencias": [REFERENCIAS["pn_max"], REFERENCIAS["cuantia_columna"]],
     }
 
 

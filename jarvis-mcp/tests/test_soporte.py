@@ -97,3 +97,11 @@ def test_ifc_resumen_y_propiedades(tmp_path):
     assert e["total"] == 1 and e["elementos"][0]["contenedor"] == "Piso 1"
     p = ifc.propiedades(str(ruta), guid)
     assert p["psets"]["Pset_WallCommon"]["FireRating"] == "F60"
+
+
+def test_busqueda_devuelve_seccion_del_texto_oficial(boveda):
+    if not (boveda.raiz / "30 NORMAS" / "Textos oficiales" / "Texto oficial - E060.md").exists():
+        pytest.skip("texto oficial de la E.060 no disponible")
+    res = boveda.buscar("area minima de refuerzo por traccion secciones rectangulares", carpeta="30 NORMAS/Textos")
+    assert res[0]["nota"] == "Texto oficial - E060"
+    assert res[0]["seccion"].startswith("10.5.2")

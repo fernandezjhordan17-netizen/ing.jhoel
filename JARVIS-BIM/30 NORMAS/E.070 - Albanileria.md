@@ -10,7 +10,7 @@ Diseño de **albañilería confinada** (la más usada en vivienda peruana) y **a
 
 ## Criterios clave
 - Unidades de albañilería (clases), morteros, resistencia f'm y v'm.
-- **Densidad mínima de muros** por dirección: Σ(L·t)/Ap ≥ Z·U·S·N / 56 (N = número de pisos).
+- **Densidad mínima de muros reforzados** por dirección: Σ(L·t)/Ap ≥ Z·U·S·N / 56 (N = número de pisos) — ec. 7.1.2b, verificada en [[Texto oficial - E070]].
 - Esfuerzo axial máximo en muros; control de fisuración ante sismo moderado; diseño de columnas y vigas de confinamiento ante sismo severo.
 - Coeficiente R0 = 3 y deriva máxima 0.005 → [[E.030 - Diseno Sismorresistente]].
 

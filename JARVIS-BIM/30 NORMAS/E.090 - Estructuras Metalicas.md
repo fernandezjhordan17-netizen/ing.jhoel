@@ -8,6 +8,8 @@ actualizado: 2026-09-24
 
 Norma peruana para diseño de estructuras de acero, basada en las especificaciones **AISC** (métodos LRFD y ASD) → [[AISC 360 y 341]].
 
+Texto oficial: [[Texto oficial - E090]].
+
 ## Temas
 Materiales, cargas y combinaciones, miembros en tracción, compresión, flexión, cortante, flexocompresión, conexiones (soldadas y empernadas), estabilidad, fabricación y montaje.
 

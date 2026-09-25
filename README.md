@@ -5,10 +5,10 @@ Cerebro de conocimiento (bóveda de **Obsidian**) y herramientas para construir 
 ## Qué contiene
 | Carpeta | Contenido |
 |---|---|
-| `JARVIS-BIM/` | Bóveda de Obsidian: **274 notas** y **3 380+ enlaces**, organizadas como una red (MOCs → conceptos → normas → software → MCP → gestión → proyectos) |
+| `JARVIS-BIM/` | Bóveda de Obsidian: **289 notas** y **3 480+ enlaces**, con **13 textos oficiales del RNE** completos (E.010–E.100, EM.110), organizadas como una red (MOCs → conceptos → normas → software → MCP → gestión → proyectos) |
 | `JARVIS-BIM/70 PROYECTOS/Proyectos de estudio/` | **99 modelos IFC reales** (Duplex, Revit ARC/STR/MEP, SampleHouse, puentes/vías/ferrovías IFC 4.3…) analizados automáticamente |
 | `scripts/` | Descarga de modelos BIM, clonado de servidores MCP, conversor IFC → Obsidian, verificador del grafo, **descarga de 29 normas y guías oficiales** (`catalogo_normas.csv`) y conversor PDF → notas por artículo |
-| `jarvis-mcp/` | **Servidor MCP propio `jarvis-bim`**: 23 herramientas (E.030-2026, bóveda, IFC, ISO 19650, ETABS/SAP2000) y 52 pruebas |
+| `jarvis-mcp/` | **Servidor MCP propio `jarvis-bim`**: 29 herramientas (E.030-2026, E.060, metrados IFC, bóveda, ISO 19650, ETABS/SAP2000) y 70 pruebas |
 | `jarvis/` | Configuraciones de Claude Desktop / Claude Code para los servidores MCP |
 | `.claude/agents/` | Agentes especializados: coordinador BIM, estructural, gestor de proyectos, auditor de calidad |
 | `CLAUDE.md` | Instrucciones de comportamiento de JARVIS |

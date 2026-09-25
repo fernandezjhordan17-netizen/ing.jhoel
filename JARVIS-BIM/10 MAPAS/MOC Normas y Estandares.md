@@ -29,7 +29,7 @@ actualizado: 2026-09-24
 - [[RNE - Reglamento Nacional de Edificaciones]]
   - Estructuras: [[E.020 - Cargas]] · [[E.030 - Diseno Sismorresistente]] (ed. 2026) · [[E.031 - Aislamiento Sismico]] · [[E.050 - Suelos y Cimentaciones]] · [[E.060 - Concreto Armado]] · [[E.070 - Albanileria]] · [[E.090 - Estructuras Metalicas]] · [[Otras normas estructurales del RNE]]
   - Arquitectura: [[A.010 - Condiciones Generales de Diseno]] · [[A.120 - Accesibilidad Universal]] · [[A.130 - Requisitos de Seguridad]]
-  - Instalaciones: [[IS.010 - Instalaciones Sanitarias]] · [[EM.010 - Instalaciones Electricas Interiores]]
+  - Instalaciones: [[IS.010 - Instalaciones Sanitarias]] · [[EM.010 - Instalaciones Electricas Interiores]] · [[EM.110 - Confort Termico y Luminico]]
   - Generales y saneamiento: [[G.050 - Seguridad durante la Construccion]] · [[Normas OS - Obras de Saneamiento]]
 - Costos: [[Norma Tecnica de Metrados]] · Vías: [[DG-2018 - Diseno Geometrico de Carreteras]] · Sostenibilidad: [[Codigo Tecnico de Construccion Sostenible]]
 - 📜 **Textos oficiales completos**: [[Indice de textos oficiales]]

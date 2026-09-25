@@ -12,9 +12,9 @@ actualizado: 2026-09-24
 |---|---|---|
 | 2003 | NTE E.030-2003 | Histórica |
 | 2016 | DS N.° 003-2016-VIVIENDA | Reformula la norma (espectro con TP/TL, irregularidades) |
-| 2018 | RM N.° 355-2018-VIVIENDA | Modificación |
+| 2018 | RM N.° 355-2018-VIVIENDA | Modificación → texto histórico: [[Texto oficial - E030_2018_historica]] |
 | 2019 | RM N.° 043-2019-VIVIENDA | Edición usada hasta abril de 2026 |
-| 2025 | RM N.° 279-2025-VIVIENDA | **Solo publicó el proyecto** de modificación para comentarios (nov-2025) |
+| 2025 | RM N.° 279-2025-VIVIENDA (30-10-2025) | **Solo publicó el proyecto** de modificación para comentarios → [[Texto oficial - E030_RM279_2025_proyecto]] |
 | **2026** | **RM N.° 183-2026-VIVIENDA** (firmada 28-04-2026, publicada 03-05-2026) | **Vigente.** Reemplaza el texto completo: 74 artículos y 4 anexos (antes 53 y 2) |
 | 2026 | RM N.° 217-2026-VIVIENDA (jun-2026) | Modifica la Única Disposición Complementaria Transitoria de la RM 183-2026 (régimen de transición) |
 

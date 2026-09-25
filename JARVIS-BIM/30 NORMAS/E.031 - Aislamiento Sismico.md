@@ -9,6 +9,8 @@ actualizado: 2026-09-24
 
 Aprobada por el **DS N.° 030-2019-VIVIENDA**, que la incorpora al RNE. Establece requisitos de **diseño, construcción, ensayos y supervisión** de edificaciones con sistemas de aislamiento sísmico en la base.
 
+Texto oficial: [[Texto oficial - E031]].
+
 ## Cuándo aplica
 - **Obligatoria** para edificaciones nuevas de categoría **A1** (establecimientos de salud de 2.° y 3.° nivel) en **zonas sísmicas 3 y 4**, por mandato de la [[E.030 - Diseno Sismorresistente]] (art. 19 y Tabla 9 de la edición 2026).
 - Opcional para otras categorías que busquen mayor desempeño (continuidad operativa).

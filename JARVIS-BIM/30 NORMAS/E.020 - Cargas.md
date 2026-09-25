@@ -25,7 +25,7 @@ Define **cargas muertas, vivas, de viento y nieve** mínimas.
 | Albañilería de unidades sólidas | 18 | 1800 |
 | Acero | 78.5 | 7850 |
 
-> [!warning] Usa siempre la tabla oficial de la norma vigente; estos valores son orientativos para aprendizaje.
+> [!check] Vivienda 2,0 kPa (200 kgf/m²), oficinas 2,5 kPa (250) y sus corredores y escaleras 4,0 kPa (400) verificados contra el texto oficial → [[Texto oficial - E020]]. Para otros usos, toma el valor de la tabla oficial.
 
 ## En software
 - Patrones de carga en [[ETABS]]/[[SAP2000]]/[[SAFE]]: `CM` (muerta), `CV` (viva), `CVT` (viva de techo), `SX`, `SY` (sismo).

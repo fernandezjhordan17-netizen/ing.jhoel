@@ -6,6 +6,8 @@ actualizado: 2026-09-24
 ---
 # E.050 — Suelos y Cimentaciones
 
+Texto oficial: [[Texto oficial - E050]] (proyecto publicado con la RM 346-2018-VIVIENDA; aprobado con la RM 406-2018-VIVIENDA).
+
 ## Contenido principal
 - **Estudio de Mecánica de Suelos (EMS)** obligatorio para la mayoría de edificaciones; profesional responsable; número mínimo de puntos de investigación y profundidad según tipo de edificación.
 - Ensayos de campo (SPT, DPL, calicatas) y laboratorio (granulometría, límites, corte directo, consolidación, químicos: sales, sulfatos, cloruros).

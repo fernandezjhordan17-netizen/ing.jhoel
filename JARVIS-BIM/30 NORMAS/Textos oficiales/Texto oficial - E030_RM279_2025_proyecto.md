@@ -1,0 +1,54 @@
+---
+tipo: texto-oficial
+codigo: "E.030"
+titulo: "RM 279-2025-VIVIENDA: publicacion del proyecto de modificacion (no vigente)"
+version: "2025"
+fuente_pdf: "90 RECURSOS/Adjuntos/Normas/RNE_Estructuras/E030_RM279_2025_proyecto.pdf"
+paginas: 4
+articulos: 2
+secciones: 0
+requiere_ocr: false
+extraido: 2026-09-25
+tags: [norma/texto-oficial]
+aliases: ["E.030 texto", "RM 279-2025-VIVIENDA: publicacion del proyecto de modificacion (no vigente)"]
+---
+
+# E.030 — RM 279-2025-VIVIENDA: publicacion del proyecto de modificacion (no vigente) (texto oficial)
+
+> [!warning] Texto extraído automáticamente del PDF
+> Fuente: [[90 RECURSOS/Adjuntos/Normas/RNE_Estructuras/E030_RM279_2025_proyecto.pdf]] · 4 páginas · 2 artículos y 0 secciones numeradas detectados.
+> Tablas y fórmulas pueden perder formato: **para citar valores, verifica siempre en el PDF**.
+
+Resumen y contexto: [[E.030 - Diseno Sismorresistente]] · [[Indice de textos oficiales]] · [[MOC Normas y Estandares]]
+
+---
+
+Resolución Ministerial N° 279-2025-VIVIENDA Lima, 30 de octubre de 2025 VISTOS: La Nota N° 482-2025-VIVIENDA/VMCS-DGPRCS de la Dirección General de Políticas y Regulación en Construcción y Saneamiento (DGPRCS); el Informe N° 534-2025-VIVIENDA/VMCS-DGPRCS-DC de la Dirección de Construcción; el Informe N° 867-2025-VIVIENDA/SG-OGAJ de la Oficina General de Asesoría Jurídica (OGAJ); y, CONSIDERANDO: Que, los artículos 5 y 6 de la Ley N° 30156, Ley de Organización y Funciones del Ministerio de Vivienda, Construcción y Saneamiento (MVCS), establecen que este Ministerio tiene competencia, entre otras, en la materia de construcción; y es el órgano rector de las políticas nacionales y sectoriales dentro de su ámbito de competencia, que son de obligatorio cumplimiento por los tres niveles de gobierno en el marco del proceso de descentralización, y en todo el territorio nacional; asimismo, tiene entre sus competencias exclusivas, dictar normas y lineamientos técnicos para la adecuada ejecución y supervisión de las políticas nacionales y sectoriales; Que, el numeral 1 del artículo 9 de la citada Ley, establece entre las funciones exclusivas del MVCS, desarrollar y aprobar tecnologías, metodologías o mecanismos que sean necesarios para el cumplimiento de las políticas nacionales y sectoriales, en el ámbito de su competencia; Que, el literal d) del artículo 82 del Reglamento de Organización y Funciones del MVCS, aprobado por el Decreto Supremo Nº 010-2014-VIVIENDA, modificado por el Decreto Supremo N° 006-2015-VIVIENDA, establece que la DGPRCS tiene entre sus funciones, proponer actualizaciones del Reglamento Nacional de Edificaciones (RNE), en coordinación con los sectores que se vinculen, en el marco de los Comités Técnicos de Normalización, según la normatividad vigente; Que, mediante el Decreto Supremo N° 015-2004-VIVIENDA se aprueba el Índice y la Estructura del RNE, aplicable a las Habilitaciones Urbanas y a las Edificaciones que se ejecuten en el territorio nacional, estableciendo en sus artículos 1 y 3 que corresponde al MVCS aprobar, mediante Resolución Ministerial, las normas técnicas de acuerdo al mencionado Índice y sus variaciones según los avances tecnológicos;
+
+Que, por el Decreto Supremo N° 011-2006-VIVIENDA se aprueban sesenta y seis (66) Normas Técnicas del RNE comprendidas en el Índice citado en el considerando precedente, entre ellas, la Norma Técnica E.030 “Diseño Sismorresistente” del RNE; Que, mediante la Resolución Ministerial N° 379-2024-VIVIENDA, se crea el Grupo de Trabajo Multisectorial, de naturaleza temporal, dependiente del Ministerio de Vivienda, Construcción y Saneamiento, denominado “Grupo de Trabajo para la actualización de la Norma Técnica E.030 Diseño Sismorresistente del Reglamento Nacional de Edificaciones”, el mismo que tiene entre sus funciones: a) Analizar la Norma Técnica “E.030 Diseño Sismorresistente” del RNE; b) Contribuir con casuística y aportes técnicos-legales sustentados, sobre los alcances y aplicación de la referida Norma Técnica; y c) Elaborar la propuesta de actualización de la Norma Técnica “E.030 Diseño Sismorresistente” del RNE; Que, mediante la Nota N° 482-2025-VIVIENDA/VMCS-DGPRCS, la DGPRCS en base al Informe N° 534-2025-VIVIENDA/VMCS-DGPRCS-DC de su Dirección de Construcción, sustenta y presenta el proyecto de Resolución Ministerial que dispone la publicación del proyecto de Resolución Ministerial que aprueba la modificación de la Norma Técnica “E.030 Diseño Sismorresistente” del RNE, con la finalidad de incrementar la seguridad estructural de las edificaciones, conforme a lo siguiente:
+
+a) Incorporación de nuevos criterios para la clasificación de perfiles de suelo basados en la velocidad de propagación de ondas de corte (Vs), el número de golpes corregido (N60) y la resistencia al corte no drenada (Su), más acordes con el comportamiento dinámico real de los depósitos de suelo, y alineadas con estándares internacionales;
+
+b) Inclusión del periodo predominante de vibración del terreno (Ts) como parámetro obligatorio para edificaciones de categorías A y B ubicadas en la zona sísmica Z4 y su metodología de cálculo;
+
+c) Incorporación del análisis sísmico considerando la acción sísmica en simultáneo en ambas direcciones, en el análisis estructural reforzando el principio de que el diseño estructural debe considerar la acción simultánea del sismo en dos ejes ortogonales, conforme a la práctica internacional;
+
+d) Actualización de los criterios para edificaciones con muros de ductilidad limitada, sustentada en estudios experimentales y normativa comparada, que justifican la revisión del número máximo de niveles, el coeficiente básico de reducción R₀ y los límites de distorsión máxima de entrepiso;
+
+Resolución Ministerial e) Incorporación de lineamientos mínimos para la ejecución de estudios de microzonificación sísmica, con el fin de unificar criterios técnicos a nivel nacional y reducir la variabilidad en los estudios realizados por diferentes consultoras; Que, adicionalmente, la DGPRCS señala que, atendiendo a la naturaleza del proyecto normativo, existe la necesidad de efectuar la publicación en el diario oficial El Peruano de la presente propuesta normativa por un plazo de quince días calendario, antes de la fecha prevista para su entrada en vigencia, a fin de permitir que las personas interesadas formulen comentarios, aportes u opiniones, sobre las medidas propuestas; Que, el numeral 19.1 del artículo 19 del Reglamento que establece disposiciones sobre publicación y difusión de normas jurídicas de carácter general, resoluciones y proyectos normativos, aprobado por el Decreto Supremo N° 009-2024JUS, señala que sin perjuicio de la aplicación de los mecanismos de consulta pública previstos en el Reglamento que desarrolla el Marco Institucional que rige el Proceso de Mejora de la Calidad Regulatoria y establece los Lineamientos Generales para la aplicación del Análisis de Impacto Regulatorio Ex Ante, aprobado por el Decreto Supremo N° 063-2021-PCM, o norma que lo sustituya, los proyectos de normas jurídicas de carácter general deben ser publicados en las sedes digitales de las entidades de la Administración Pública a cargo de su elaboración o en otro medio, asegurando su debida difusión y fácil acceso; el plazo para la recepción de los comentarios, aportes u opiniones, no debe ser menor a quince días calendario contados desde el día siguiente de su publicación, salvo disposición normativa de rango superior que establezca lo contrario, conforme a lo señalado en el literal c) del numeral 20.1 del artículo 20 del acotado Reglamento; Que, a través del Informe N° 867-2025-VIVIENDA/SG-OGAJ, la OGAJ emite opinión favorable para continuar con el trámite de aprobación de la presente Resolución Ministerial; Que, en consecuencia, corresponde disponer la publicación del proyecto de Resolución Ministerial que aprueba la modificación de la Norma Técnica E.030 “Diseño Sismorresistente” del RNE, a fin de recibir comentarios, aportes u opiniones de la ciudadanía; De conformidad con lo dispuesto en la Ley N° 30156, Ley de Organización y Funciones del Ministerio de Vivienda, Construcción y Saneamiento, y modificatoria; el Reglamento de Organización y Funciones del Ministerio de Vivienda, Construcción y Saneamiento, aprobado por el Decreto Supremo N° 010-2014-VIVIENDA, modificado por el Decreto Supremo N° 006-2015-VIVIENDA; el Decreto Supremo N° 015-2004VIVIENDA, que aprueba el Índice del Reglamento Nacional de Edificaciones; el Decreto Supremo N° 011-2006-VIVIENDA, que aprueba sesenta y seis (66) Normas Técnicas
+
+del Reglamento Nacional de Edificaciones, y modificatorias; y, el Reglamento que establece disposiciones sobre publicación y difusión de normas jurídicas de carácter general, resoluciones y proyectos normativos, aprobado por el Decreto Supremo Nº 0092024-JUS; SE RESUELVE:
+
+### Artículo 1 - Publicación del proyecto de Resolución Ministerial
+
+Disponer la publicación del proyecto de Resolución Ministerial que aprueba la modificación de la Norma Técnica E.030 “Diseño Sismorresistente” del Reglamento Nacional de Edificaciones, aprobado por el Decreto Supremo N° 011-2006-VIVIENDA, y del texto de la propuesta de modificación de la citada norma técnica, en la sede digital del Ministerio de Vivienda, Construcción y Saneamiento (www.gob.pe/vivienda), el mismo día de la publicación de la presente Resolución Ministerial en el diario oficial El Peruano, a efectos de recibir los comentarios, aportes u opiniones de la ciudadanía, dentro del plazo de quince días calendario, contados a partir del primer día hábil siguiente de publicada la presente Resolución Ministerial.
+
+### Artículo 2 - Consolidación de Información
+
+Encargar a la Dirección de Construcción de la Dirección General de Políticas y Regulación en Construcción y Saneamiento, la consolidación de los comentarios, aportes u opiniones que se presenten respecto del proyecto normativo señalado en el artículo precedente, a través de la sede digital del Ministerio de Vivienda, Construcción y Saneamiento (www.gob.pe/vivienda), en el siguiente enlace: “Proyecto de Resolución Ministerial que modifica la Norma Técnica E.030, Diseño sismorresistente del Reglamento Nacional de Edificaciones”. Regístrese, comuníquese y publíquese. WILDER ALEJANDRO SIFUENTES QUILCATE Ministro de Vivienda, Construcción y Saneamiento MVCS Por: TORRICO HUERTA Jose Luis FAU 20504743307 hard Motivo: Doy V° B° Fecha: 2025/10/30 12:39:47-0500 MVCS Por: CARBAJAL NAVARRO Max Arturo FAU 20504743307 hard Motivo: Doy V° B° Fecha: 2025/10/30 15:35:09-0500 Firmado digitalmente por BARRANTES BRAVO Christian Alfredo FAU 20504743307 hard Motivo: Doy V° B°
+
+- Fecha: 30.10.2025 17:09:41 -05:00
+
+Firmado digitalmente por SIFUENTES QUILCATE Wilder Alejandro FAU 20504743307 hard Motivo: Soy el autor del documento
+
+- Fecha: 30.10.2025 17:42:01 -05:00

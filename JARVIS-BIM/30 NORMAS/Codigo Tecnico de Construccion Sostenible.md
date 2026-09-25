@@ -6,7 +6,7 @@ actualizado: 2026-09-24
 ---
 # Código Técnico de Construcción Sostenible (Perú)
 
-Instrumento del MVCS que establece **criterios técnicos de eficiencia energética y de uso de agua** en edificaciones (con aplicación obligatoria u opcional según tipo y ubicación), complementado por la norma **EM.110** "Confort térmico y lumínico con eficiencia energética" del RNE.
+Instrumento del MVCS que establece **criterios técnicos de eficiencia energética y de uso de agua** en edificaciones (con aplicación obligatoria u opcional según tipo y ubicación), complementado por la norma [[EM.110 - Confort Termico y Luminico]] del RNE.
 
 ## Temas
 - Eficiencia energética: envolvente (transmitancia térmica por zona bioclimática), iluminación eficiente ([[EM.010 - Instalaciones Electricas Interiores]]), calentamiento de agua.

@@ -32,6 +32,8 @@ RE_SUBCAP = re.compile(r"^\s*(SUBCAP[ÍI]TULO|SECCI[ÓO]N)\s+([IVXLC\d]+)\b(.*)$
 RE_ARTICULO = re.compile(r"^\s*(Art[íi]culo|ART[ÍI]CULO|Art\.)\s*(\d+[A-Za-z]?(?:\.\d+)*)\s*[\.\-–—°º:]*\s*(.*)$")
 RE_ANEXO = re.compile(r"^\s*(ANEXO|Anexo)\s+([IVXLC\d]+|[A-Z])\b(.*)$")
 RE_NUM_PAGINA = re.compile(r"^\s*(p[áa]g\.?\s*)?\d{1,6}\s*$", re.I)
+RE_SECCION = re.compile(r"^\s*(\d{1,2}(?:\.\d{1,3}){1,4})\.?(?:\s+(.*))?$")
+RE_INDICE = re.compile(r"\.{5,}")  # líneas de tabla de contenido con puntos guía
 
 
 def extraer_paginas(ruta: Path) -> list[str]:
@@ -41,14 +43,25 @@ def extraer_paginas(ruta: Path) -> list[str]:
         except ImportError:
             import fitz  # PyMuPDF (nombre antiguo)
         with fitz.open(str(ruta)) as doc:
-            return [p.get_text("text") for p in doc]
+            return [p.get_text("text").translate(TABLA_SIMBOLOS) for p in doc]
     except ImportError:
         pass
     try:
         from pypdf import PdfReader
     except ImportError:
         sys.exit("Instala una libreria PDF:  pip install pymupdf   (o  pip install pypdf)")
-    return [p.extract_text() or "" for p in PdfReader(str(ruta)).pages]
+    return [(p.extract_text() or "").translate(TABLA_SIMBOLOS) for p in PdfReader(str(ruta)).pages]
+
+
+# Fuente "Symbol" de Word: caracteres en el área privada U+F020–U+F0FF -> Unicode
+_SIMBOLOS = dict(zip("abcdefghijklmnopqrstuvwxyz", "αβχδεφγηιϕκλμνοπθρστυϖωξψζ"))
+_SIMBOLOS.update(dict(zip("ABCDEFGHIJKLMNOPQRSTUVWXYZ", "ΑΒΧΔΕΦΓΗΙϑΚΛΜΝΟΠΘΡΣΤΥςΩΞΨΖ")))
+_SIMBOLOS.update({"\xa3": "≤", "\xb3": "≥", "\xb1": "±", "\xb4": "×", "\xb8": "÷", "\xb9": "≠", "\xbb": "≈",
+                  "\xb0": "°", "\xd6": "√", "\xa5": "∞", "\xe5": "∑", "\xf2": "∫", "\xa2": "′", "\xb2": "″",
+                  "\xb7": "•", "\xae": "→", "-": "−"})
+TABLA_SIMBOLOS = {0xF000 + ord(k): v for k, v in _SIMBOLOS.items()}
+TABLA_SIMBOLOS.update({0xF000 + c: chr(c) for c in range(0x20, 0x41) if 0xF000 + c not in TABLA_SIMBOLOS})
+TABLA_SIMBOLOS.update({c: None for c in range(0xF0E6, 0xF100) if c not in TABLA_SIMBOLOS})  # piezas de corchetes grandes
 
 
 def clave_repeticion(linea: str) -> str:
@@ -59,14 +72,17 @@ def limpiar(paginas: list[str]) -> list[str]:
     """Quita encabezados/pies repetidos y numeros de pagina; devuelve lineas."""
     frecuencia = collections.Counter()
     for texto in paginas:
-        frecuencia.update({clave_repeticion(l) for l in texto.splitlines() if l.strip()})
+        frecuencia.update({clave_repeticion(l) for l in texto.splitlines()
+                           if l.strip() and sum(c.isalpha() for c in l) >= 4})  # números de sección no son encabezados
     umbral = max(3, int(len(paginas) * 0.3))
     repetidas = {k for k, n in frecuencia.items() if n >= umbral and len(k) < 90}
     lineas = []
     for texto in paginas:
         for l in texto.splitlines():
             s = l.strip()
-            if not s or RE_NUM_PAGINA.match(s) or clave_repeticion(s) in repetidas:
+            if not s or RE_NUM_PAGINA.match(s) or RE_INDICE.search(s):
+                continue
+            if sum(c.isalpha() for c in s) >= 4 and clave_repeticion(s) in repetidas:
                 continue
             lineas.append(s)
         lineas.append("")  # separador de pagina = posible fin de parrafo
@@ -109,6 +125,23 @@ def estructurar(lineas: list[str]) -> tuple[list[str], dict]:
                 esperando_nombre = not resto
                 break
         else:
+            m = RE_SECCION.match(l)
+            if m and (not m.group(2) or m.group(2)[:1].isupper()) and len(m.group(1)) <= 12:
+                cerrar()
+                numero, resto = m.group(1), (m.group(2) or "").strip()
+                nivel = "###" if numero.count(".") == 1 else "####"
+                titulo_sec, cuerpo = "", resto
+                if resto.isupper() and len(resto) < 100:
+                    titulo_sec, cuerpo = resto.title(), ""
+                elif ":" in resto[:60]:
+                    titulo_sec, _, cuerpo = resto.partition(":")
+                salida.append(f"{nivel} {numero}{(' - ' + titulo_sec.strip()) if titulo_sec else ''}")
+                salida.append("")
+                stats["secciones"] += 1
+                esperando_nombre = not resto
+                if cuerpo.strip():
+                    parrafo.append(cuerpo.strip())
+                continue
             m = RE_ARTICULO.match(l)
             if m:
                 cerrar()
@@ -161,12 +194,13 @@ def escribir_nota(pdf: Path, boveda: Path, meta: dict) -> tuple[Path, dict]:
 
     L = ["---", "tipo: texto-oficial", f'codigo: "{codigo}"', f'titulo: "{titulo}"',
          f'version: "{meta.get("version", "")}"', f'fuente_pdf: "{rel_pdf}"', f"paginas: {len(paginas)}",
-         f"articulos: {stats.get('articulos', 0)}", f"requiere_ocr: {str(escaneado).lower()}",
+         f"articulos: {stats.get('articulos', 0)}", f"secciones: {stats.get('secciones', 0)}", f"requiere_ocr: {str(escaneado).lower()}",
          f"extraido: {dt.date.today().isoformat()}", "tags: [norma/texto-oficial]",
          f'aliases: ["{codigo} texto", "{titulo}"]', "---", "",
          f"# {codigo} — {titulo} (texto oficial)", "",
          "> [!warning] Texto extraído automáticamente del PDF",
-         f"> Fuente: [[{rel_pdf}]] · {len(paginas)} páginas · {stats.get('articulos', 0)} artículos detectados.",
+         f"> Fuente: [[{rel_pdf}]] · {len(paginas)} páginas · {stats.get('articulos', 0)} artículos y "
+         f"{stats.get('secciones', 0)} secciones numeradas detectados.",
          "> Tablas y fórmulas pueden perder formato: **para citar valores, verifica siempre en el PDF**.", ""]
     if escaneado:
         L += ["> [!danger] Poco texto extraíble: el PDF parece escaneado. Aplica OCR (p. ej. `ocrmypdf`) y vuelve a ejecutar.", ""]
@@ -174,7 +208,8 @@ def escribir_nota(pdf: Path, boveda: Path, meta: dict) -> tuple[Path, dict]:
     L += ["Resumen y contexto: " + " · ".join(enlaces + [f"[[{NOTA_INDICE}]]", "[[MOC Normas y Estandares]]"]), "", "---", ""]
     L += cuerpo
     nota.write_text("\n".join(L), encoding="utf-8")
-    return nota, {"paginas": len(paginas), "articulos": stats.get("articulos", 0), "ocr": escaneado}
+    return nota, {"paginas": len(paginas), "articulos": stats.get("articulos", 0),
+                  "secciones": stats.get("secciones", 0), "ocr": escaneado}
 
 
 def escribir_indice(boveda: Path, catalogo: dict[str, dict], resultados: dict[str, dict]) -> Path:
@@ -223,7 +258,8 @@ def main() -> int:
             nota, r = escribir_nota(pdf, boveda, catalogo.get(pdf.stem, {}))
             resultados[pdf.stem] = r
             aviso = "  ⚠️ requiere OCR" if r["ocr"] else ""
-            print(f"[ok] {pdf.name}: {r['paginas']} pág., {r['articulos']} artículos -> {nota.relative_to(boveda)}{aviso}")
+            print(f"[ok] {pdf.name}: {r['paginas']} pág., {r['articulos']} artículos, {r['secciones']} secciones -> "
+                  f"{nota.relative_to(boveda)}{aviso}")
         except Exception as exc:
             print(f"[error] {pdf.name}: {exc}")
     indice = escribir_indice(boveda, catalogo, resultados)

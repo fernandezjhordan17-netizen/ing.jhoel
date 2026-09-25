@@ -17,6 +17,6 @@ actualizado: 2026-09-24
 - Declarar el material y sistema en el modelo (`IfcMaterial`, parámetros de sistema) para que el control normativo sea automático → [[Clases IFC principales]].
 - Estas normas son frecuentes en proyectos rurales y de reconstrucción (postas, escuelas) → [[Plan BIM Peru]].
 
-Texto oficial: agregar al catálogo si tu proyecto las usa → [[Indice de textos oficiales]].
+Textos oficiales: [[Texto oficial - E010]] · [[Texto oficial - E040]] · [[Texto oficial - E080]] · [[Texto oficial - E100]]
 
 ↑ [[RNE - Reglamento Nacional de Edificaciones]] · [[MOC Ingenieria Estructural]] · [[E.030 - Diseno Sismorresistente]]
