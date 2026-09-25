@@ -175,6 +175,32 @@ class PuenteCSI:
         return self.ejecutar(_f, timeout=7200)
 
 
+    def crear_combinaciones(self, plan: list[dict], dry_run: bool = True) -> dict:
+        """Crea combinaciones (RespCombo.Add + SetCaseList). plan = salida de e060.plan_combinaciones."""
+        resumen = [{"nombre": p["nombre"], "tipo": p["tipo"],
+                    "detalle": p.get("casos") or p.get("combinaciones")} for p in plan]
+        if dry_run:
+            return {"dry_run": True, "combinaciones": resumen,
+                    "siguiente_paso": "Revisa los factores y confirma con dry_run=false."}
+
+        def _f(sap):
+            if sap.GetModelIsLocked():
+                raise ErrorCSI("El modelo está bloqueado (tiene resultados). Desbloquéalo tú en el programa.")
+            respaldo = self._respaldo(sap)
+            creadas, fallidas = [], []
+            for p in plan:
+                envolvente = p["tipo"] == "envolvente"
+                if _ret(sap.RespCombo.Add(p["nombre"], 1 if envolvente else 0)) != 0:
+                    fallidas.append(f"{p['nombre']} (¿ya existe?)")
+                    continue
+                items = [(c, 1.0) for c in p["combinaciones"]] if envolvente else p["casos"]
+                tipo_nombre = 1 if envolvente else 0  # 0 = caso de carga, 1 = combinación
+                errores = [c for c, sf in items if _ret(sap.RespCombo.SetCaseList(p["nombre"], tipo_nombre, c, sf)) != 0]
+                (fallidas if errores else creadas).append(p["nombre"] if not errores else f"{p['nombre']} {errores}")
+            return {"dry_run": False, "creadas": creadas, "fallidas": fallidas, "respaldo": respaldo}
+        return self.ejecutar(_f)
+
+
 _PUENTES: dict[str, PuenteCSI] = {}
 
 

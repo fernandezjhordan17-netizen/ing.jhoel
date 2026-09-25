@@ -10,7 +10,7 @@ from mcp.server.mcpserver import MCPServer
 from mcp.server.mcpserver.exceptions import ToolError
 from mcp.types import ToolAnnotations
 
-from . import __version__, bitacora, e030, ifc, nomenclatura, reportes
+from . import __version__, bitacora, e030, e060, ifc, metrados, nomenclatura, reportes
 from .boveda import Boveda
 from .etabs import ErrorCSI, puente
 
@@ -32,11 +32,12 @@ Irregularidad = Literal[tuple(sorted(e030.IA) + sorted(e030.IP))]  # type: ignor
 TipoCT = Literal[tuple(e030.CT)]  # type: ignore[valid-type]
 Material = Literal[tuple(e030.DERIVA_MAX)]  # type: ignore[valid-type]
 Programa = Literal["ETABS", "SAP2000"]
+Barra = Literal[tuple(e060.BARRAS)]  # type: ignore[valid-type]
 
 servidor = MCPServer(name="jarvis-bim", title="JARVIS BIM", version=__version__, instructions=INSTRUCCIONES)
 
 
-ERRORES_ESPERADOS = (e030.ErrorNorma, ErrorCSI, FileNotFoundError, KeyError, ValueError, RuntimeError)
+ERRORES_ESPERADOS = (e030.ErrorNorma, e060.ErrorE060, ErrorCSI, FileNotFoundError, KeyError, ValueError, RuntimeError)
 
 
 def herramienta(anotaciones: ToolAnnotations):
@@ -134,6 +135,46 @@ def e030_restricciones(categoria: Categoria, zona: Zona, sistema: Sistema,
     hallazgos = e030.verificar_restricciones(categoria, zona, sistema, list(irregularidades or []),
                                              pisos, altura_m, perfil, aislamiento)
     return {"cumple": not any(h.startswith("⛔") for h in hallazgos), "hallazgos": hallazgos, "norma": e030.NORMA}
+
+
+# ------------------------------------------------------------------ E.060 Concreto armado ------
+@herramienta(LECTURA)
+def e060_combinaciones(sismo: bool = True, viento: bool = False, empuje: bool = False) -> dict:
+    """Combinaciones de resistencia requerida U del art. 9.2 de la E.060 (CM, CV, CS, CVi, CE) y factores φ."""
+    return {"norma": e060.NORMA, "combinaciones": e060.combinaciones(sismo, viento, empuje), "phi": e060.PHI}
+
+
+@herramienta(LECTURA)
+def e060_flexion_viga(mu_knm: float, b_mm: float, h_mm: float, fc_mpa: float = 21, fy_mpa: float = 420,
+                      recubrimiento_mm: float = 40, estribo: Barra = "3/8", barra_supuesta: Barra = "5/8") -> dict:
+    """Acero a flexión de una viga rectangular: As requerido, As mín./máx. (0,75ρb), φMn y opciones de barras que entran en una capa."""
+    return e060.flexion_viga(mu_knm, b_mm, h_mm, fc_mpa, fy_mpa, recubrimiento_mm, estribo, barra_supuesta)
+
+
+@herramienta(LECTURA)
+def e060_cortante_viga(vu_kn: float, b_mm: float, d_mm: float, fc_mpa: float = 21, fy_mpa: float = 420,
+                       estribo: Barra = "3/8", ramas: int = 2) -> dict:
+    """Estribos por cortante: φVc = 0,85·0,17·√f'c·b·d, Vs requerido, espaciamiento calculado, máximo y de diseño."""
+    return e060.cortante_viga(vu_kn, b_mm, d_mm, fc_mpa, fy_mpa, estribo, ramas)
+
+
+@herramienta(LECTURA)
+def e060_columna_axial(pu_kn: float, b_mm: float, h_mm: float, as_total_mm2: float, fc_mpa: float = 21,
+                       fy_mpa: float = 420, espiral: bool = False) -> dict:
+    """Resistencia axial máxima φPn(máx) de una columna y cuantía entre 1 % y 6 %."""
+    return e060.columna_axial(pu_kn, b_mm, h_mm, as_total_mm2, fc_mpa, fy_mpa, espiral)
+
+
+# ------------------------------------------------------------------ Metrados --------------------
+@herramienta(LECTURA)
+def ifc_metrados(ruta: str, por_piso: bool = False, exportar_xlsx: str | None = None) -> dict:
+    """Metrado desde un IFC con las cantidades Qto (m³ concreto, m² muros/revestimientos, kg acero, und carpintería…),
+    con partidas sugeridas según la Norma Técnica de Metrados y corrección de errores de unidades del exportador."""
+    r = metrados.metrar(ruta, por_piso)
+    if exportar_xlsx:
+        r["archivo_xlsx"] = metrados.metrado_a_excel(r, exportar_xlsx)
+        bitacora.registrar("ifc_metrados", f"Metrado de {ruta} exportado a {r['archivo_xlsx']}", "escritura (archivo local)")
+    return r
 
 
 # ------------------------------------------------------------------ Bóveda Obsidian ------------
@@ -247,6 +288,20 @@ def csi_crear_espectro_e030(nombre: str, zona: Zona, categoria: Categoria, siste
 
 
 @herramienta(ESCRITURA)
+def csi_crear_combinaciones_e060(cm: list[str], cv: list[str], sismo: list[str] | None = None,
+                                 sismo_espectral: bool = True, viento: list[str] | None = None,
+                                 envolvente: bool = True, dry_run: bool = True, programa: Programa = "ETABS") -> dict:
+    """Crea en ETABS/SAP2000 las combinaciones de la E.060 (art. 9.2) usando los nombres de casos del modelo
+    (cm=['Dead','SCP'], cv=['Live'], sismo=['SX','SY']). dry_run=true por defecto; con false respalda y escribe."""
+    plan = e060.plan_combinaciones(cm, cv, sismo, sismo_espectral, viento, "ENV_E060" if envolvente else None)
+    r = puente(programa).crear_combinaciones(plan, dry_run)
+    if not dry_run:
+        bitacora.registrar("csi_crear_combinaciones_e060", f"{programa}: {len(plan)} combinaciones E.060",
+                           "escritura", "ingeniero (dry_run=false)", r.get("respaldo"))
+    return r
+
+
+@herramienta(ESCRITURA)
 def csi_correr_analisis(confirmar: bool = False, programa: Programa = "ETABS") -> dict:
     """Ejecuta el análisis del modelo abierto (respaldo previo). Sin confirmar=true solo describe la acción."""
     r = puente(programa).correr_analisis(confirmar)
@@ -266,7 +321,8 @@ def flujo_sismico_e030(proyecto: str) -> str:
 3. e030_restricciones → si hay ⛔, detente y explica.
 4. e030_espectro (muestra la tabla de parámetros) y pide confirmación.
 5. csi_estado → csi_crear_espectro_e030 con dry_run=true → confirmación → dry_run=false.
-6. El ingeniero asigna el espectro a SX/SY y corre el análisis (o csi_correr_analisis con confirmar=true).
+6. csi_crear_combinaciones_e060 (dry_run → confirmación); el ingeniero asigna el espectro a SX/SY y corre el análisis
+   (o csi_correr_analisis con confirmar=true).
 7. csi_reacciones_base y e030_cortante_basal → e030_escalamiento_dinamico.
 8. csi_derivas con R y material → reporte con pendientes marcados.
 9. Borrador de memoria con la plantilla 'Plantilla - Memoria de calculo'. El ingeniero revisa y firma."""

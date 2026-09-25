@@ -20,6 +20,8 @@ class SapFalso:
                                               GetTableForDisplayArray=self._tabla)
         self.Func = SimpleNamespace(FuncRS=SimpleNamespace(SetUser=self._set_user))
         self.Analyze = SimpleNamespace(RunAnalysis=lambda: 0)
+        self.combos = {}
+        self.RespCombo = SimpleNamespace(Add=self._combo_add, SetCaseList=self._combo_case)
 
     def _registrar(self):
         self.hilos.add(threading.get_ident())
@@ -44,6 +46,16 @@ class SapFalso:
         cab, filas = self._tablas[clave]
         plano = [x for f in filas for x in f]
         return [cab, 1, cab, len(filas), plano, 0]
+
+    def _combo_add(self, nombre, tipo):
+        if nombre in self.combos:
+            return 1
+        self.combos[nombre] = {"tipo": tipo, "items": []}
+        return 0
+
+    def _combo_case(self, nombre, tipo_nombre, caso, sf):
+        self.combos[nombre]["items"].append((tipo_nombre, caso, sf))
+        return [tipo_nombre, 0]
 
     def _set_user(self, nombre, n, periodos, valores, amort):
         self._registrar()
@@ -103,3 +115,16 @@ def test_sin_windows_sin_conector():
         pytest.skip("solo aplica fuera de Windows")
     with pytest.raises(ErrorCSI):
         PuenteCSI("ETABS").estado()
+
+
+def test_crear_combinaciones(modelo):
+    from jarvis_bim import e060
+    plan = e060.plan_combinaciones(["Dead"], ["Live"], ["SX"])
+    p = PuenteCSI(conector=lambda: modelo)
+    assert p.crear_combinaciones(plan)["dry_run"] and not modelo.combos
+    r = p.crear_combinaciones(plan, dry_run=False)
+    assert set(r["creadas"]) == {"U1", "U2_SX", "U3_SX", "ENV_E060"} and not r["fallidas"]
+    assert modelo.combos["ENV_E060"]["tipo"] == 1
+    assert (0, "Dead", 1.4) in modelo.combos["U1"]["items"]
+    r2 = p.crear_combinaciones(plan, dry_run=False)
+    assert len(r2["fallidas"]) == 4  # ya existen: no se sobrescriben

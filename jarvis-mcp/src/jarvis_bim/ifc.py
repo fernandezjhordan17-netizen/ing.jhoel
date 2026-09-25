@@ -10,6 +10,7 @@ def _ifcopenshell():
     try:
         import ifcopenshell
         import ifcopenshell.util.element
+        import ifcopenshell.util.unit
         return ifcopenshell
     except ImportError as exc:  # pragma: no cover
         raise RuntimeError("Instala IfcOpenShell:  pip install ifcopenshell") from exc

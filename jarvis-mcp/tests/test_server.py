@@ -40,7 +40,8 @@ def test_lista_herramientas_y_prompts():
         return tools, prompts
     tools, prompts = anyio.run(_sesion, fn)
     for nombre in ("e030_espectro", "e030_cortante_basal", "boveda_buscar", "iso19650_validar_nombre",
-                   "ifc_resumen", "csi_crear_espectro_e030", "csi_derivas"):
+                   "ifc_resumen", "csi_crear_espectro_e030", "csi_derivas", "e060_flexion_viga",
+                   "e060_cortante_viga", "ifc_metrados", "csi_crear_combinaciones_e060"):
         assert nombre in tools
     assert tools["boveda_buscar"].annotations.read_only_hint
     assert not tools["csi_crear_espectro_e030"].annotations.read_only_hint
@@ -99,3 +100,10 @@ def test_servidor_por_stdio():
     info, r = anyio.run(main)
     assert info.name == "jarvis-bim"
     assert _datos(r)["valido"]
+
+
+def test_flexion_desde_mcp():
+    async def fn(c):
+        return await c.call_tool("e060_flexion_viga", {"mu_knm": 120, "b_mm": 300, "h_mm": 600})
+    d = _datos(anyio.run(_sesion, fn))
+    assert d["phi_Mn_kNm"] >= 120 and d["barras"]
